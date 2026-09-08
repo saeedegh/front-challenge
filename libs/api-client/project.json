@@ -1,0 +1,8 @@
+{
+  "name": "api-client",
+  "sourceRoot": "libs/api-client/src",
+  "projectType": "library",
+  "tags": [
+    "type:data-access"
+  ]
+}

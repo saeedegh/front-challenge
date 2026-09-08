@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "strict": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@saas/auth": [
+        "libs/auth/src/index.ts"
+      ],
+      "@saas/ui": [
+        "libs/ui/src/index.ts"
+      ],
+      "@saas/api-client": [
+        "libs/api-client/src/index.ts"
+      ],
+      "@saas/user-feature": [
+        "libs/user-feature/src/index.ts"
+      ]
+    }
+  }
+}

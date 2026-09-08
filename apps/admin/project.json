@@ -1,0 +1,8 @@
+{
+  "name": "admin",
+  "sourceRoot": "apps/admin",
+  "projectType": "application",
+  "tags": [
+    "type:app"
+  ]
+}

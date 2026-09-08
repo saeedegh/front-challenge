@@ -1,0 +1,1 @@
+import type {User} from '@saas/auth'; export const usersApi={getById:async(id:string)=>{const r=await fetch('/api/users/'+id);if(!r.ok)throw Error('User not found');return r.json() as Promise<User>;}};

@@ -1,0 +1,8 @@
+{
+  "name": "auth",
+  "sourceRoot": "libs/auth/src",
+  "projectType": "library",
+  "tags": [
+    "type:data-access"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "user-feature",
+  "sourceRoot": "libs/user-feature/src",
+  "projectType": "library",
+  "tags": [
+    "type:feature"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "namedInputs": {
+    "default": [
+      "{projectRoot}/**/*"
+    ]
+  },
+  "plugins": [
+    {
+      "plugin": "@nx/next/plugin"
+    }
+  ],
+  "analytics": true
+}
