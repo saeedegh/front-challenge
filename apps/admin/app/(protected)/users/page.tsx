@@ -36,9 +36,9 @@ export default function UsersPage() {
   });
   const deleteMutation = useMutation({
     mutationFn: usersApi.delete,
-    onMutate: () => toast.loading("Deleting user…"),
+    onMutate: () => toast.loading("در حال حذف کاربر…"),
     onSuccess: async (_, __, toastId) => {
-      toast.success("User deleted successfully", { id: toastId });
+      toast.success("کاربر با موفقیت حذف شد", { id: toastId });
       await queryClient.invalidateQueries({ queryKey: ["users"] });
     },
     onError: (mutationError, _, toastId) => {
@@ -47,15 +47,15 @@ export default function UsersPage() {
   });
 
   function handleDelete(id: string, name: string) {
-    if (window.confirm(`Delete ${name}?`)) deleteMutation.mutate(id);
+    if (window.confirm(`آیا از حذف «${name}» مطمئن هستید؟`)) deleteMutation.mutate(id);
   }
 
   return (
     <>
       <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 3 }}>
-        <Typography variant="h4">Users</Typography>
+        <Typography variant="h4">کاربران</Typography>
         <Button component={Link} href="/users/new" variant="contained" startIcon={<AddIcon />}>
-          Create user
+          ساخت کاربر جدید
         </Button>
       </Box>
       {isLoading && <CircularProgress />}
@@ -65,11 +65,11 @@ export default function UsersPage() {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell>Email</TableCell>
-                <TableCell>Department</TableCell>
-                <TableCell>Role</TableCell>
-                <TableCell align="right">Actions</TableCell>
+                <TableCell>نام</TableCell>
+                <TableCell>ایمیل</TableCell>
+                <TableCell>واحد سازمانی</TableCell>
+                <TableCell>نقش</TableCell>
+                <TableCell align="left">عملیات</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -87,16 +87,16 @@ export default function UsersPage() {
                   <TableCell>{user.name}</TableCell>
                   <TableCell>{user.email}</TableCell>
                   <TableCell>{user.department || "—"}</TableCell>
-                  <TableCell><Chip size="small" label={user.role} color={user.role === "admin" ? "primary" : "default"} /></TableCell>
-                  <TableCell align="right" onClick={(event) => event.stopPropagation()}>
-                    <Tooltip title="View user"><IconButton component={Link} href={`/users/${user.id}`} aria-label={`View ${user.name}`}><VisibilityIcon /></IconButton></Tooltip>
-                    <Tooltip title="Edit user"><IconButton component={Link} href={`/users/${user.id}/edit`} aria-label={`Edit ${user.name}`}><EditIcon /></IconButton></Tooltip>
-                    <Tooltip title="Delete user"><IconButton color="error" onClick={() => handleDelete(user.id, user.name)} disabled={deleteMutation.isPending} aria-label={`Delete ${user.name}`}><DeleteIcon /></IconButton></Tooltip>
+                  <TableCell><Chip size="small" label={user.role === "admin" ? "مدیر" : "کاربر"} color={user.role === "admin" ? "primary" : "default"} /></TableCell>
+                  <TableCell align="left" onClick={(event) => event.stopPropagation()}>
+                    <Tooltip title="مشاهده کاربر"><IconButton component={Link} href={`/users/${user.id}`} aria-label={`مشاهده ${user.name}`}><VisibilityIcon /></IconButton></Tooltip>
+                    <Tooltip title="ویرایش کاربر"><IconButton component={Link} href={`/users/${user.id}/edit`} aria-label={`ویرایش ${user.name}`}><EditIcon /></IconButton></Tooltip>
+                    <Tooltip title="حذف کاربر"><IconButton color="error" onClick={() => handleDelete(user.id, user.name)} disabled={deleteMutation.isPending} aria-label={`حذف ${user.name}`}><DeleteIcon /></IconButton></Tooltip>
                   </TableCell>
                 </TableRow>
               ))}
               {users.length === 0 && (
-                <TableRow><TableCell colSpan={5} align="center">No users found</TableCell></TableRow>
+                <TableRow><TableCell colSpan={5} align="center">کاربری پیدا نشد</TableCell></TableRow>
               )}
             </TableBody>
           </Table>

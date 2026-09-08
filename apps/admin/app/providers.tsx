@@ -2,7 +2,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { ThemeProvider, CssBaseline } from "@mui/material";
-import { theme } from "@saas/ui";
+import { RtlProvider, theme } from "@saas/ui";
 import { AuthProvider } from "@saas/auth";
 import { Toaster } from "react-hot-toast";
 export function Providers({ children }: { children: React.ReactNode }) {
@@ -26,12 +26,14 @@ export function Providers({ children }: { children: React.ReactNode }) {
   if (!mockReady) return null;
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Toaster position="top-right" />
-      <QueryClientProvider client={qc}>
-        <AuthProvider>{children}</AuthProvider>
-      </QueryClientProvider>
-    </ThemeProvider>
+    <RtlProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Toaster position="top-left" />
+        <QueryClientProvider client={qc}>
+          <AuthProvider>{children}</AuthProvider>
+        </QueryClientProvider>
+      </ThemeProvider>
+    </RtlProvider>
   );
 }

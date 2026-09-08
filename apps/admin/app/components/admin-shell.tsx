@@ -16,8 +16,8 @@ import {
 import { useAuth } from "@saas/auth";
 
 const links = [
-  { href: "/dashboard", label: "Dashboard", icon: <DashboardIcon /> },
-  { href: "/users", label: "Users", icon: <PeopleIcon /> },
+  { href: "/dashboard", label: "داشبورد", icon: <DashboardIcon /> },
+  { href: "/users", label: "کاربران", icon: <PeopleIcon /> },
 ];
 
 export function AdminShell({ children }: { children: React.ReactNode }) {
@@ -35,7 +35,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
       <AppBar position="static">
         <Toolbar sx={{ gap: 1 }}>
           <Typography variant="h6" sx={{ mr: 2 }}>
-            SaaS Admin
+            پنل مدیریت
           </Typography>
           {links.map((link) => (
             <Button
@@ -55,7 +55,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
           ))}
           <Box sx={{ flexGrow: 1 }} />
           <Button color="inherit" startIcon={<LogoutIcon />} onClick={handleLogout}>
-            Logout
+            خروج
           </Button>
         </Toolbar>
       </AppBar>

@@ -19,13 +19,13 @@ export default function DashboardPage() {
 
   return (
     <>
-      <Typography variant="h4" gutterBottom>Dashboard</Typography>
+      <Typography variant="h4" gutterBottom>داشبورد</Typography>
       <Grid container spacing={3}>
         <Grid size={{ xs: 12, sm: 6 }}>
           <Card>
             <CardContent>
               <PeopleIcon color="primary" fontSize="large" />
-              <Typography color="text.secondary">Total users</Typography>
+              <Typography color="text.secondary">تعداد کل کاربران</Typography>
               <Typography variant="h3">{users?.length ?? 0}</Typography>
             </CardContent>
           </Card>
@@ -34,7 +34,7 @@ export default function DashboardPage() {
           <Card>
             <CardContent>
               <AdminPanelSettingsIcon color="primary" fontSize="large" />
-              <Typography color="text.secondary">Administrators</Typography>
+              <Typography color="text.secondary">مدیران</Typography>
               <Typography variant="h3">{admins}</Typography>
             </CardContent>
           </Card>

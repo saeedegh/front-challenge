@@ -23,7 +23,7 @@ export default function Login() {
       password: String(d.get("password")),
     });
     if (r.success) router.push("/dashboard");
-    else setError(r.error || "Login failed");
+    else setError(r.error || "ورود ناموفق بود");
   }
   return (
     <Box
@@ -32,27 +32,27 @@ export default function Login() {
       <Card sx={{ maxWidth: 420, width: "100%" }}>
         <CardContent>
           <Typography variant="h5" gutterBottom>
-            Sign in
+            ورود به پنل مدیریت
           </Typography>
           {error && <Alert severity="error">{error}</Alert>}
           <Box component="form" onSubmit={submit}>
             <TextField
               name="email"
-              label="Email"
+              label="ایمیل"
               defaultValue="admin@saas.io"
               fullWidth
               margin="normal"
             />
             <TextField
               name="password"
-              label="Password"
+              label="رمز عبور"
               type="password"
               defaultValue="admin123"
               fullWidth
               margin="normal"
             />
             <Button type="submit" variant="contained" fullWidth>
-              Sign in
+              ورود
             </Button>
           </Box>
         </CardContent>

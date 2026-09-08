@@ -5,7 +5,7 @@ export type UserInput = Pick<User, "name" | "email" | "role" | "department">;
 async function readResponse<T>(response: Response): Promise<T> {
   const body = (await response.json()) as T & { message?: string };
   if (!response.ok) {
-    throw new Error(body.message ?? "Request failed");
+    throw new Error(body.message ?? "انجام درخواست با خطا مواجه شد");
   }
   return body;
 }

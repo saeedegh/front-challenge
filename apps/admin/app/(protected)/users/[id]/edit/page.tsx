@@ -19,14 +19,14 @@ export default function EditUserPage({ params }: { params: { id: string } }) {
   });
 
   async function handleSubmit(values: UserInput) {
-    const toastId = toast.loading("Updating user…");
+    const toastId = toast.loading("در حال ویرایش کاربر…");
     try {
       await mutation.mutateAsync(values);
       await Promise.all([
         queryClient.invalidateQueries({ queryKey: ["users"] }),
         queryClient.invalidateQueries({ queryKey: ["users", params.id] }),
       ]);
-      toast.success("User updated successfully", { id: toastId });
+      toast.success("اطلاعات کاربر با موفقیت ویرایش شد", { id: toastId });
       router.push(`/users/${params.id}`);
     } catch (mutationError) {
       toast.error((mutationError as Error).message, { id: toastId });
@@ -39,7 +39,7 @@ export default function EditUserPage({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <Typography variant="h4" gutterBottom>Edit user</Typography>
+      <Typography variant="h4" gutterBottom>ویرایش کاربر</Typography>
       <Card sx={{ maxWidth: 680 }}>
         <CardContent>
           <UserForm
@@ -49,7 +49,7 @@ export default function EditUserPage({ params }: { params: { id: string } }) {
               department: user.department ?? "",
               role: user.role,
             }}
-            submitLabel="Save changes"
+            submitLabel="ذخیره تغییرات"
             isSubmitting={mutation.isPending}
             onSubmit={handleSubmit}
             onCancel={() => router.push(`/users/${params.id}`)}

@@ -15,10 +15,10 @@ import {
 import type { UserInput } from "@saas/api-client";
 
 const validationSchema = yup.object({
-  name: yup.string().trim().min(2, "Enter at least 2 characters").required("Name is required"),
-  email: yup.string().trim().email("Enter a valid email").required("Email is required"),
-  department: yup.string().trim().required("Department is required"),
-  role: yup.string().oneOf(["admin", "user"]).required("Role is required"),
+  name: yup.string().trim().min(2, "نام باید حداقل ۲ حرف باشد").required("نام الزامی است"),
+  email: yup.string().trim().email("یک ایمیل معتبر وارد کنید").required("ایمیل الزامی است"),
+  department: yup.string().trim().required("واحد سازمانی الزامی است"),
+  role: yup.string().oneOf(["admin", "user"]).required("نقش الزامی است"),
 });
 
 const emptyValues: UserInput = {
@@ -56,7 +56,7 @@ export function UserForm({
         fullWidth
         margin="normal"
         name="name"
-        label="Name"
+        label="نام و نام خانوادگی"
         value={formik.values.name}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
@@ -67,7 +67,7 @@ export function UserForm({
         fullWidth
         margin="normal"
         name="email"
-        label="Email"
+        label="ایمیل"
         type="email"
         value={formik.values.email}
         onChange={formik.handleChange}
@@ -79,7 +79,7 @@ export function UserForm({
         fullWidth
         margin="normal"
         name="department"
-        label="Department"
+        label="واحد سازمانی"
         value={formik.values.department ?? ""}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
@@ -91,26 +91,26 @@ export function UserForm({
         margin="normal"
         error={formik.touched.role && Boolean(formik.errors.role)}
       >
-        <InputLabel id="role-label">Role</InputLabel>
+        <InputLabel id="role-label">نقش</InputLabel>
         <Select
           labelId="role-label"
           name="role"
-          label="Role"
+          label="نقش"
           value={formik.values.role}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         >
-          <MenuItem value="user">User</MenuItem>
-          <MenuItem value="admin">Admin</MenuItem>
+          <MenuItem value="user">کاربر</MenuItem>
+          <MenuItem value="admin">مدیر</MenuItem>
         </Select>
         {formik.touched.role && formik.errors.role && (
           <FormHelperText>{formik.errors.role}</FormHelperText>
         )}
       </FormControl>
       <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 1, mt: 3 }}>
-        <Button onClick={onCancel} disabled={isSubmitting}>Cancel</Button>
+        <Button onClick={onCancel} disabled={isSubmitting}>انصراف</Button>
         <Button type="submit" variant="contained" disabled={isSubmitting}>
-          {isSubmitting ? "Saving…" : submitLabel}
+          {isSubmitting ? "در حال ذخیره…" : submitLabel}
         </Button>
       </Box>
     </Box>

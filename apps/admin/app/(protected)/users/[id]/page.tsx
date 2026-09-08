@@ -31,20 +31,20 @@ export default function UserDetailPage({ params }: { params: { id: string } }) {
   return (
     <>
       <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}>
-        <Button component={Link} href="/users" startIcon={<ArrowBackIcon />}>Back to users</Button>
-        <Button component={Link} href={`/users/${user.id}/edit`} variant="contained" startIcon={<EditIcon />}>Edit user</Button>
+        <Button component={Link} href="/users" startIcon={<ArrowBackIcon />}>بازگشت به کاربران</Button>
+        <Button component={Link} href={`/users/${user.id}/edit`} variant="contained" startIcon={<EditIcon />}>ویرایش کاربر</Button>
       </Box>
       <Card sx={{ maxWidth: 720 }}>
         <CardContent>
           <Stack direction="row" sx={{ justifyContent: "space-between", alignItems: "center" }}>
             <Typography variant="h4">{user.name}</Typography>
-            <Chip label={user.role} color={user.role === "admin" ? "primary" : "default"} />
+            <Chip label={user.role === "admin" ? "مدیر" : "کاربر"} color={user.role === "admin" ? "primary" : "default"} />
           </Stack>
           <Divider sx={{ my: 3 }} />
           <Stack spacing={2}>
-            <Box><Typography color="text.secondary" variant="body2">Email</Typography><Typography>{user.email}</Typography></Box>
-            <Box><Typography color="text.secondary" variant="body2">Department</Typography><Typography>{user.department || "—"}</Typography></Box>
-            <Box><Typography color="text.secondary" variant="body2">Created at</Typography><Typography>{new Date(user.createdAt).toLocaleString()}</Typography></Box>
+            <Box><Typography color="text.secondary" variant="body2">ایمیل</Typography><Typography>{user.email}</Typography></Box>
+            <Box><Typography color="text.secondary" variant="body2">واحد سازمانی</Typography><Typography>{user.department || "—"}</Typography></Box>
+            <Box><Typography color="text.secondary" variant="body2">تاریخ ساخت</Typography><Typography>{new Date(user.createdAt).toLocaleString("fa-IR")}</Typography></Box>
           </Stack>
         </CardContent>
       </Card>

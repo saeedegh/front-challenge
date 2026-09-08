@@ -9,9 +9,9 @@ export default function Profile() {
 
   return (
     <Box sx={{ p: 4 }}>
-      <Typography variant="h4">My Profile</Typography>
+      <Typography variant="h4">پروفایل من</Typography>
       {user && <UserDetail userId={user.id} />}
-      <Button onClick={logout}>Logout</Button>
+      <Button onClick={logout}>خروج</Button>
     </Box>
   );
 }

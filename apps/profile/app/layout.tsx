@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Providers } from "./providers";
 export const metadata: Metadata = {
-  title: "SaaS Profile",
-  description: "SaaS Profile portal",
+  title: "پروفایل SaaS",
+  description: "پروفایل کاربری سامانه SaaS",
 };
 export default function RootLayout({
   children,
@@ -10,7 +10,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="fa" dir="rtl">
       <body style={{ margin: 0 }}>
         <Providers>{children}</Providers>
       </body>

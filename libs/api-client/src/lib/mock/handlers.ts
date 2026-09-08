@@ -18,7 +18,7 @@ export const handlers = [
     );
     if (!credentials) {
       return HttpResponse.json(
-        { message: "Invalid email or password" },
+        { message: "ایمیل یا رمز عبور نادرست است" },
         { status: 401 },
       );
     }
@@ -34,14 +34,14 @@ export const handlers = [
     const user = MOCK_USERS.find((item) => item.id === params.id);
     return user
       ? HttpResponse.json(user)
-      : HttpResponse.json({ message: "User not found" }, { status: 404 });
+      : HttpResponse.json({ message: "کاربر پیدا نشد" }, { status: 404 });
   }),
 
   http.post("/api/users", async ({ request }) => {
     const input = (await request.json()) as UserInput;
     if (emailExists(input.email)) {
       return HttpResponse.json(
-        { message: "A user with this email already exists" },
+        { message: "کاربری با این ایمیل وجود دارد" },
         { status: 409 },
       );
     }
@@ -57,12 +57,12 @@ export const handlers = [
   http.put("/api/users/:id", async ({ params, request }) => {
     const index = MOCK_USERS.findIndex((item) => item.id === params.id);
     if (index === -1) {
-      return HttpResponse.json({ message: "User not found" }, { status: 404 });
+      return HttpResponse.json({ message: "کاربر پیدا نشد" }, { status: 404 });
     }
     const input = (await request.json()) as UserInput;
     if (emailExists(input.email, String(params.id))) {
       return HttpResponse.json(
-        { message: "A user with this email already exists" },
+        { message: "کاربری با این ایمیل وجود دارد" },
         { status: 409 },
       );
     }
@@ -73,7 +73,7 @@ export const handlers = [
   http.delete("/api/users/:id", ({ params }) => {
     const index = MOCK_USERS.findIndex((item) => item.id === params.id);
     if (index === -1) {
-      return HttpResponse.json({ message: "User not found" }, { status: 404 });
+      return HttpResponse.json({ message: "کاربر پیدا نشد" }, { status: 404 });
     }
     const [deletedUser] = MOCK_USERS.splice(index, 1);
     return HttpResponse.json({ id: deletedUser.id });

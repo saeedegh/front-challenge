@@ -2,7 +2,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { ThemeProvider, CssBaseline } from "@mui/material";
-import { theme } from "@saas/ui";
+import { RtlProvider, theme } from "@saas/ui";
 import { AuthProvider } from "@saas/auth";
 export function Providers({ children }: { children: React.ReactNode }) {
   const [qc] = useState(() => new QueryClient());
@@ -25,11 +25,13 @@ export function Providers({ children }: { children: React.ReactNode }) {
   if (!mockReady) return null;
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <QueryClientProvider client={qc}>
-        <AuthProvider>{children}</AuthProvider>
-      </QueryClientProvider>
-    </ThemeProvider>
+    <RtlProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <QueryClientProvider client={qc}>
+          <AuthProvider>{children}</AuthProvider>
+        </QueryClientProvider>
+      </ThemeProvider>
+    </RtlProvider>
   );
 }

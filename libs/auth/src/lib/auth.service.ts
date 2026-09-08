@@ -3,7 +3,7 @@ import type { LoginCredentials, AuthResponse, User } from './auth.types';
 async function readJson<T>(response: Response): Promise<T> {
   const contentType = response.headers.get('content-type');
   if (!contentType?.includes('application/json')) {
-    throw new Error('The authentication service returned an invalid response.');
+    throw new Error('پاسخ سرویس احراز هویت معتبر نیست.');
   }
   return response.json() as Promise<T>;
 }
@@ -16,7 +16,7 @@ export const authService = {
       body: JSON.stringify(credentials),
     });
     const body = await readJson<AuthResponse & { message?: string }>(response);
-    if (!response.ok) throw new Error(body.message ?? 'Login failed');
+    if (!response.ok) throw new Error(body.message ?? 'ورود ناموفق بود');
     return body;
   },
   async logout() {},
@@ -24,7 +24,7 @@ export const authService = {
     const response = await fetch('/api/auth/me', {
       headers: { Authorization: `Bearer ${token}` },
     });
-    if (!response.ok) throw Error('Unauthorized');
+    if (!response.ok) throw Error('دسترسی غیرمجاز است');
     return readJson<User>(response);
   },
 };

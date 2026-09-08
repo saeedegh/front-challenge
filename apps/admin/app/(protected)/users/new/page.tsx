@@ -13,11 +13,11 @@ export default function CreateUserPage() {
   const mutation = useMutation({ mutationFn: usersApi.create });
 
   async function handleSubmit(values: UserInput) {
-    const toastId = toast.loading("Creating user…");
+    const toastId = toast.loading("در حال ساخت کاربر…");
     try {
       await mutation.mutateAsync(values);
       await queryClient.invalidateQueries({ queryKey: ["users"] });
-      toast.success("User created successfully", { id: toastId });
+      toast.success("کاربر با موفقیت ساخته شد", { id: toastId });
       router.push("/users");
     } catch (error) {
       toast.error((error as Error).message, { id: toastId });
@@ -26,11 +26,11 @@ export default function CreateUserPage() {
 
   return (
     <>
-      <Typography variant="h4" gutterBottom>Create user</Typography>
+      <Typography variant="h4" gutterBottom>ساخت کاربر جدید</Typography>
       <Card sx={{ maxWidth: 680 }}>
         <CardContent>
           <UserForm
-            submitLabel="Create user"
+            submitLabel="ساخت کاربر"
             isSubmitting={mutation.isPending}
             onSubmit={handleSubmit}
             onCancel={() => router.push("/users")}
