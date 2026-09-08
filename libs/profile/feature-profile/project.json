@@ -1,6 +1,0 @@
-{
-  "name": "profile-feature-profile",
-  "sourceRoot": "libs/profile/feature-profile/src",
-  "projectType": "library",
-  "tags": ["scope:profile", "type:feature"]
-}

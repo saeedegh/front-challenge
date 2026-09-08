@@ -1,4 +1,4 @@
-import { ProfileScreen } from "@saas/profile/feature-profile";
+import { ProfileScreen } from "../../../src/features/profile/profile-screen";
 
 export default function ProfilePage() {
   return <ProfileScreen />;

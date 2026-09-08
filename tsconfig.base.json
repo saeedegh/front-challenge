@@ -16,7 +16,6 @@
       "@saas/admin/users/feature-form": ["./libs/admin/users/feature-form/src/index.ts"],
       "@saas/admin/dashboard/data-access": ["./libs/admin/dashboard/data-access/src/index.ts"],
       "@saas/admin/dashboard/feature": ["./libs/admin/dashboard/feature/src/index.ts"],
-      "@saas/profile/feature-profile": ["./libs/profile/feature-profile/src/index.ts"],
       "@saas/shared/app-runtime": ["./libs/shared/app-runtime/src/index.ts"],
       "@saas/shared/mock-api": ["./libs/shared/mock-api/src/index.ts"]
     }

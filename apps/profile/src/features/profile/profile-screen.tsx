@@ -7,9 +7,14 @@ import { useUser } from "@saas/users/data-access";
 export function ProfileScreen() {
   const { user: authenticatedUser } = useAuth();
   const userQuery = useUser(authenticatedUser?.id ?? "");
+
   if (userQuery.isLoading) return <CircularProgress />;
-  if (!userQuery.data) return <Typography color="error">اطلاعات کاربر در دسترس نیست</Typography>;
+  if (!userQuery.data) {
+    return <Typography color="error">اطلاعات کاربر در دسترس نیست</Typography>;
+  }
+
   const user = userQuery.data;
+
   return (
     <>
       <Typography variant="h4" gutterBottom>
