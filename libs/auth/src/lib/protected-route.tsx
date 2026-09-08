@@ -1,1 +1,13 @@
-'use client'; import {useEffect} from 'react'; import {useRouter} from 'next/navigation'; import {CircularProgress} from '@mui/material'; import {useAuth} from './use-auth'; export function ProtectedRoute({children}:{children:React.ReactNode}){const {isAuthenticated}=useAuth();const router=useRouter();useEffect(()=>{if(!isAuthenticated)router.push('/login')},[isAuthenticated,router]);return isAuthenticated?<>{children}</>:<CircularProgress/>;}
+"use client";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { CircularProgress } from "@mui/material";
+import { useAuth } from "./use-auth";
+export function ProtectedRoute({ children }: { children: React.ReactNode }) {
+  const { isAuthenticated } = useAuth();
+  const router = useRouter();
+  useEffect(() => {
+    if (!isAuthenticated) router.push("/login");
+  }, [isAuthenticated, router]);
+  return isAuthenticated ? <>{children}</> : <CircularProgress />;
+}

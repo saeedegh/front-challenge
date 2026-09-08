@@ -1,1 +1,15 @@
-'use client'; import {useEffect} from 'react'; import {useAuthStore} from './auth.store'; import {authService} from './auth.service'; export function AuthProvider({children}:{children:React.ReactNode}){const {token,isAuthenticated,setAuth,clearAuth}=useAuthStore();useEffect(()=>{if(token&&!isAuthenticated)authService.getMe(token).then(u=>setAuth(u,token)).catch(clearAuth)},[token,isAuthenticated,setAuth,clearAuth]);return <>{children}</>}
+"use client";
+import { useEffect } from "react";
+import { useAuthStore } from "./auth.store";
+import { authService } from "./auth.service";
+export function AuthProvider({ children }: { children: React.ReactNode }) {
+  const { token, isAuthenticated, setAuth, clearAuth } = useAuthStore();
+  useEffect(() => {
+    if (token && !isAuthenticated)
+      authService
+        .getMe(token)
+        .then((u) => setAuth(u, token))
+        .catch(clearAuth);
+  }, [token, isAuthenticated, setAuth, clearAuth]);
+  return <>{children}</>;
+}
