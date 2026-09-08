@@ -2,7 +2,5 @@
   "name": "ui",
   "sourceRoot": "libs/ui/src",
   "projectType": "library",
-  "tags": [
-    "type:ui"
-  ]
+  "tags": ["type:ui", "scope:shared"]
 }

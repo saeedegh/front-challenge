@@ -1,0 +1,6 @@
+{
+  "name": "shared-mock-api",
+  "sourceRoot": "libs/shared/mock-api/src",
+  "projectType": "library",
+  "tags": ["scope:shared", "type:data-access"]
+}

@@ -8,7 +8,14 @@
   ],
   "scripts": {
     "dev:admin": "next dev apps/admin --port 3000",
-    "dev:profile": "next dev apps/profile --port 3001"
+    "dev:profile": "next dev apps/profile --port 3001",
+    "build:admin": "next build apps/admin",
+    "build:profile": "next build apps/profile",
+    "typecheck": "tsc -p apps/admin/tsconfig.json --noEmit && tsc -p apps/profile/tsconfig.json --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
@@ -18,7 +25,6 @@
     "@mui/material": "^9.4.0",
     "@mui/stylis-plugin-rtl": "^9.4.0",
     "@tanstack/react-query": "^5.102.8",
-    "axios": "^1.20.0",
     "formik": "^2.4.9",
     "msw": "^2.15.0",
     "next": "^14.2.35",
@@ -30,13 +36,19 @@
     "zustand": "^5.0.15"
   },
   "devDependencies": {
+    "@nx/eslint": "^23.2.0",
+    "@nx/eslint-plugin": "^23.2.0",
     "@nx/next": "^23.2.0",
     "@types/node": "^20.19.0",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@types/stylis": "^4.2.7",
+    "eslint": "^10.10.0",
     "nx": "^23.2.0",
-    "typescript": "~5.7.3"
+    "prettier": "^3.9.6",
+    "typescript": "~5.7.3",
+    "typescript-eslint": "^8.70.0",
+    "vitest": "^3.2.7"
   },
   "msw": {
     "workerDirectory": [

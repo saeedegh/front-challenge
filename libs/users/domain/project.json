@@ -1,0 +1,6 @@
+{
+  "name": "users-domain",
+  "sourceRoot": "libs/users/domain/src",
+  "projectType": "library",
+  "tags": ["scope:users", "type:domain"]
+}

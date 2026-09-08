@@ -1,0 +1,6 @@
+{
+  "name": "shared-app-runtime",
+  "sourceRoot": "libs/shared/app-runtime/src",
+  "projectType": "library",
+  "tags": ["scope:shared", "type:app-shell"]
+}

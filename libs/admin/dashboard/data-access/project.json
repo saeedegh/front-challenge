@@ -1,0 +1,6 @@
+{
+  "name": "admin-dashboard-data-access",
+  "sourceRoot": "libs/admin/dashboard/data-access/src",
+  "projectType": "library",
+  "tags": ["scope:admin", "type:data-access"]
+}

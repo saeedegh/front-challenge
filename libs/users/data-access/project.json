@@ -1,0 +1,6 @@
+{
+  "name": "users-data-access",
+  "sourceRoot": "libs/users/data-access/src",
+  "projectType": "library",
+  "tags": ["scope:users", "type:data-access"]
+}

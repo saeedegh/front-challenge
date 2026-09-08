@@ -9,8 +9,11 @@ export function useLogout() {
   const clearAuth = useAuthStore((state) => state.clearAuth);
 
   return async function logout() {
-    await authService.logout();
-    clearAuth();
-    router.replace("/login");
+    try {
+      await authService.logout();
+    } finally {
+      clearAuth();
+      router.replace("/login");
+    }
   };
 }

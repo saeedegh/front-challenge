@@ -3,13 +3,18 @@ import { useEffect } from "react";
 import { useAuthStore } from "./auth.store";
 import { authService } from "./auth.service";
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const { token, isAuthenticated, setAuth, clearAuth } = useAuthStore();
+  const { token, isHydrated, setAuth, clearAuth, setLoading } = useAuthStore();
   useEffect(() => {
-    if (token && !isAuthenticated)
-      authService
-        .getMe(token)
-        .then((u) => setAuth(u, token))
-        .catch(clearAuth);
-  }, [token, isAuthenticated, setAuth, clearAuth]);
+    if (!isHydrated) return;
+    if (!token) {
+      setLoading(false);
+      return;
+    }
+    setLoading(true);
+    authService
+      .getMe(token)
+      .then((user) => setAuth(user, token))
+      .catch(clearAuth);
+  }, [token, isHydrated, setAuth, clearAuth, setLoading]);
   return <>{children}</>;
 }

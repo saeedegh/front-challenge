@@ -3,25 +3,22 @@
     "target": "ES2017",
     "module": "esnext",
     "moduleResolution": "bundler",
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "lib": ["es2017", "dom"],
     "strict": true,
     "skipLibCheck": true,
     "paths": {
-      "@saas/auth": [
-        "./libs/auth/src/index.ts"
-      ],
-      "@saas/ui": [
-        "./libs/ui/src/index.ts"
-      ],
-      "@saas/api-client": [
-        "./libs/api-client/src/index.ts"
-      ],
-      "@saas/user-feature": [
-        "./libs/user-feature/src/index.ts"
-      ]
+      "@saas/auth": ["./libs/auth/src/index.ts"],
+      "@saas/ui": ["./libs/ui/src/index.ts"],
+      "@saas/users/domain": ["./libs/users/domain/src/index.ts"],
+      "@saas/users/data-access": ["./libs/users/data-access/src/index.ts"],
+      "@saas/admin/users/feature-list": ["./libs/admin/users/feature-list/src/index.ts"],
+      "@saas/admin/users/feature-detail": ["./libs/admin/users/feature-detail/src/index.ts"],
+      "@saas/admin/users/feature-form": ["./libs/admin/users/feature-form/src/index.ts"],
+      "@saas/admin/dashboard/data-access": ["./libs/admin/dashboard/data-access/src/index.ts"],
+      "@saas/admin/dashboard/feature": ["./libs/admin/dashboard/feature/src/index.ts"],
+      "@saas/profile/feature-profile": ["./libs/profile/feature-profile/src/index.ts"],
+      "@saas/shared/app-runtime": ["./libs/shared/app-runtime/src/index.ts"],
+      "@saas/shared/mock-api": ["./libs/shared/mock-api/src/index.ts"]
     }
   }
 }

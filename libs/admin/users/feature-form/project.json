@@ -1,0 +1,6 @@
+{
+  "name": "admin-users-feature-form",
+  "sourceRoot": "libs/admin/users/feature-form/src",
+  "projectType": "library",
+  "tags": ["scope:admin", "type:feature"]
+}

@@ -6,6 +6,7 @@ type Store = AuthState & {
   setAuth: (u: User, t: string) => void;
   clearAuth: () => void;
   setLoading: (v: boolean) => void;
+  setHydrated: (value: boolean) => void;
 };
 export const useAuthStore = create<Store>()(
   persist(
@@ -14,8 +15,8 @@ export const useAuthStore = create<Store>()(
       token: null,
       isAuthenticated: false,
       isLoading: false,
-      setAuth: (user, token) =>
-        set({ user, token, isAuthenticated: true, isLoading: false }),
+      isHydrated: false,
+      setAuth: (user, token) => set({ user, token, isAuthenticated: true, isLoading: false }),
       clearAuth: () =>
         set({
           user: null,
@@ -24,7 +25,12 @@ export const useAuthStore = create<Store>()(
           isLoading: false,
         }),
       setLoading: (isLoading) => set({ isLoading }),
+      setHydrated: (isHydrated) => set({ isHydrated }),
     }),
-    { name: "saas-auth" },
+    {
+      name: "saas-auth",
+      partialize: ({ user, token }) => ({ user, token }),
+      onRehydrateStorage: () => (state) => state?.setHydrated(true),
+    },
   ),
 );

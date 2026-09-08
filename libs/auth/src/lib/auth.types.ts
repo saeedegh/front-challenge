@@ -1,17 +1,13 @@
-export interface User {
-  id: string;
-  name: string;
-  email: string;
-  role: "admin" | "user";
-  avatar?: string;
-  department?: string;
-  createdAt: string;
-}
+import type { User } from "@saas/users/domain";
+
+export type { User } from "@saas/users/domain";
+
 export interface AuthState {
   user: User | null;
   token: string | null;
   isAuthenticated: boolean;
   isLoading: boolean;
+  isHydrated: boolean;
 }
 export interface LoginCredentials {
   email: string;

@@ -1,0 +1,6 @@
+{
+  "name": "admin-dashboard-feature",
+  "sourceRoot": "libs/admin/dashboard/feature/src",
+  "projectType": "library",
+  "tags": ["scope:admin", "type:feature"]
+}
