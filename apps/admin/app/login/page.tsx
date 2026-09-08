@@ -22,7 +22,7 @@ export default function Login() {
       email: String(d.get("email")),
       password: String(d.get("password")),
     });
-    if (r.success) router.push("/profile");
+    if (r.success) router.push("/dashboard");
     else setError(r.error || "Login failed");
   }
   return (
@@ -39,7 +39,7 @@ export default function Login() {
             <TextField
               name="email"
               label="Email"
-              defaultValue="user@saas.io"
+              defaultValue="admin@saas.io"
               fullWidth
               margin="normal"
             />
@@ -47,7 +47,7 @@ export default function Login() {
               name="password"
               label="Password"
               type="password"
-              defaultValue="user123"
+              defaultValue="admin123"
               fullWidth
               margin="normal"
             />

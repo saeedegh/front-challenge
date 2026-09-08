@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import { theme } from "@saas/ui";
 import { AuthProvider } from "@saas/auth";
+import { Toaster } from "react-hot-toast";
 export function Providers({ children }: { children: React.ReactNode }) {
   const [qc] = useState(() => new QueryClient());
   const [mockReady, setMockReady] = useState(false);
@@ -27,6 +28,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <Toaster position="top-right" />
       <QueryClientProvider client={qc}>
         <AuthProvider>{children}</AuthProvider>
       </QueryClientProvider>
