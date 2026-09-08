@@ -20,6 +20,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
+import { useLogout } from "@saas/auth";
 
 const drawerWidth = 240;
 
@@ -34,7 +35,6 @@ interface AppLayoutProps {
   navigationTitle: string;
   navigationItems: AppNavigationItem[];
   children: React.ReactNode;
-  onLogout: () => void | Promise<void>;
 }
 
 export function AppLayout({
@@ -42,9 +42,9 @@ export function AppLayout({
   navigationTitle,
   navigationItems,
   children,
-  onLogout,
 }: AppLayoutProps) {
   const pathname = usePathname();
+  const logout = useLogout();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const navigation = (
@@ -95,7 +95,7 @@ export function AppLayout({
           </IconButton>
           <Typography variant="h6">{title}</Typography>
           <Box sx={{ flexGrow: 1 }} />
-          <Button color="inherit" startIcon={<LogoutIcon />} onClick={onLogout}>
+          <Button color="inherit" startIcon={<LogoutIcon />} onClick={logout}>
             خروج
           </Button>
         </Toolbar>

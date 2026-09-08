@@ -1,9 +1,7 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PeopleIcon from "@mui/icons-material/People";
-import { useAuth } from "@saas/auth";
 import { AppLayout, type AppNavigationItem } from "@saas/ui";
 
 const navigationItems: AppNavigationItem[] = [
@@ -12,20 +10,11 @@ const navigationItems: AppNavigationItem[] = [
 ];
 
 export function AdminShell({ children }: { children: React.ReactNode }) {
-  const router = useRouter();
-  const { logout } = useAuth();
-
-  async function handleLogout() {
-    await logout();
-    router.replace("/login");
-  }
-
   return (
     <AppLayout
       title="پنل مدیریت"
       navigationTitle="منوی مدیریت"
       navigationItems={navigationItems}
-      onLogout={handleLogout}
     >
       {children}
     </AppLayout>

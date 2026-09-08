@@ -2,5 +2,6 @@ export * from "./lib/auth.types";
 export * from "./lib/auth.store";
 export * from "./lib/auth.service";
 export * from "./lib/use-auth";
+export * from "./lib/use-logout";
 export * from "./lib/auth-provider";
 export * from "./lib/protected-route";
