@@ -11,8 +11,8 @@ export function Providers({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     let active = true;
 
-    import('@saas/api-client').then(({ worker }) =>
-      worker.start({ onUnhandledRequest: 'bypass' }).then(() => {
+    import('@saas/api-client').then(({ startMockWorker }) =>
+      startMockWorker().then(() => {
         if (active) setMockReady(true);
       }),
     );
