@@ -152,6 +152,10 @@ NEXT_PUBLIC_ENABLE_MOCKS=true
 ارزیابی پیچیدگی و تناسب سازمانی در جدول، قضاوت طراحی این پروژه است، نه رتبه‌بندی مطلق ابزارها. هر دو ابزار امکانات اجرای کارها و کش دارند؛ دلیل ترجیح <bdi dir="ltr">Nx</bdi> فقط سرعت <bdi dir="ltr">Build</bdi> نیست. برای بررسی قابلیت‌ها: <a href="https://21.nx.dev/docs/features">امکانات Nx</a>، <a href="https://turborepo.dev/docs/guides/generating-code">تولید کد Turborepo</a> و <a href="https://turborepo.dev/docs/reference/boundaries">مرزبندی Turborepo</a>. بنابراین نبود تولید کد یا نبود مطلق مرزبندی در <bdi dir="ltr">Turborepo</bdi> مبنای این انتخاب نیست.
 </p>
 
+<p dir="rtl" align="right">
+تگ‌های <code dir="ltr">type:*</code> لایهٔ هر پروژه و تگ‌های <code dir="ltr">scope:*</code> مالکیت آن را مشخص می‌کنند. گراف وابستگی نیز برای تشخیص پروژه‌های اثرپذیر و اجرای کارهای مرتبط با <code dir="ltr">affected</code> به کار می‌رود؛ با رشد تیم‌ها، مرز مسئولیت و اثر تغییرات قابل بررسی باقی می‌ماند.
+</p>
+
 ### انتخاب Next.js
 
 <p dir="rtl" align="right">
@@ -326,50 +330,72 @@ npx nx graph
 - Metadata و Redirect ورودی اپ
 - اتصال Route به Screen یا Feature مناسب
 
-کد فرم، Query، مدیریت State و جزئیات UI داخل `page.tsx` قرار نمی‌گیرد. این تصمیم Routeها را کوتاه و قابل فهم نگه می‌دارد، وابستگی کد کسب‌وکار به Next.js را کم می‌کند و جابه‌جایی یا تست Feature را ساده‌تر می‌سازد.
+<p dir="rtl" align="right">
+کد فرم، <bdi dir="ltr">Query</bdi>، مدیریت <bdi dir="ltr">State</bdi> و جزئیات <bdi dir="ltr">UI</bdi> داخل <code dir="ltr">page.tsx</code> قرار نمی‌گیرد. این تصمیم <bdi dir="ltr">Route</bdi>ها را کوتاه و قابل فهم نگه می‌دارد، وابستگی کد کسب‌وکار به <bdi dir="ltr">Next.js</bdi> را کم می‌کند و جابه‌جایی یا تست <bdi dir="ltr">Feature</bdi> را ساده‌تر می‌سازد.
+</p>
 
-### Screen
+<h3 dir="rtl" align="right"><bdi dir="ltr">Screen</bdi></h3>
 
-Screen ورودی UI یک قابلیت در سطح Route است. وظیفه آن چیدن Componentها و نمایش حالت‌های اصلی صفحه مانند Loading، Error، Empty و Success است. Route فقط Screen را از Public API مربوط به Feature وارد می‌کند.
+<p dir="rtl" align="right">
+<bdi dir="ltr">Screen</bdi> ورودی <bdi dir="ltr">UI</bdi> یک قابلیت در سطح <bdi dir="ltr">Route</bdi> است. وظیفه آن چیدن <bdi dir="ltr">Component</bdi>ها و نمایش حالت‌های اصلی صفحه مانند <bdi dir="ltr">Loading</bdi>، <bdi dir="ltr">Error</bdi>، <bdi dir="ltr">Empty</bdi> و <bdi dir="ltr">Success</bdi> است. <bdi dir="ltr">Route</bdi> فقط <bdi dir="ltr">Screen</bdi> را از <bdi dir="ltr">Public API</bdi> مربوط به <bdi dir="ltr">Feature</bdi> وارد می‌کند.
+</p>
 
-### Component
+<h3 dir="rtl" align="right"><bdi dir="ltr">Component</bdi></h3>
 
-Componentهای داخل Feature بخش‌های نمایشی مانند جدول کاربران، فرم، کارت جزئیات و Dialog حذف هستند. ورودی و رخدادها تا حد ممکن با Props دریافت می‌شوند. این تفکیک باعث می‌شود UI خواناتر، قابل استفاده مجدد و مستقل از جزئیات Navigation یا Data Fetching باشد.
+<p dir="rtl" align="right">
+<bdi dir="ltr">Component</bdi>های داخل <bdi dir="ltr">Feature</bdi> بخش‌های نمایشی مانند جدول کاربران، فرم، کارت جزئیات و <bdi dir="ltr">Dialog</bdi> حذف هستند. ورودی و رخدادها تا حد ممکن با <bdi dir="ltr">Props</bdi> دریافت می‌شوند. این تفکیک باعث می‌شود <bdi dir="ltr">UI</bdi> خواناتر، قابل استفاده مجدد و مستقل از جزئیات <bdi dir="ltr">Navigation</bdi> یا <bdi dir="ltr">Data Fetching</bdi> باشد.
+</p>
 
-### Controller Hook
+<h3 dir="rtl" align="right"><bdi dir="ltr">Controller Hook</bdi></h3>
 
-در Screenهایی که مدیریت Query، Mutation، Router، Toast، Dialog یا جلوگیری از کلیک تکراری پیچیده شده، این منطق به Custom Hook منتقل شده است. برای مثال `useUsersListController` وضعیت فهرست، حذف، Toast، Navigation و Cache invalidation را مدیریت می‌کند و `UsersListScreen` روی نمایش تمرکز دارد.
+<p dir="rtl" align="right">
+در <bdi dir="ltr">Screen</bdi>هایی که مدیریت <bdi dir="ltr">Query</bdi>، <bdi dir="ltr">Mutation</bdi>، <bdi dir="ltr">Router</bdi>، <bdi dir="ltr">Toast</bdi>، <bdi dir="ltr">Dialog</bdi> یا جلوگیری از کلیک تکراری پیچیده شده، این منطق به <bdi dir="ltr">Custom Hook</bdi> منتقل شده است. برای مثال <code dir="ltr">useUsersListController</code> وضعیت فهرست، حذف، <bdi dir="ltr">Toast</bdi>، <bdi dir="ltr">Navigation</bdi> و <bdi dir="ltr">Cache invalidation</bdi> را مدیریت می‌کند و <code dir="ltr">UsersListScreen</code> روی نمایش تمرکز دارد.
+</p>
 
-هدف این نیست که هر Screen بدون توجه به اندازه آن حتماً یک Hook داشته باشد. استخراج منطق زمانی انجام می‌شود که خوانایی، تست‌پذیری یا استفاده مجدد را بهتر کند؛ Screen ساده Profile عمداً مستقیم و کوچک باقی مانده است.
+<p dir="rtl" align="right">
+هدف این نیست که هر <bdi dir="ltr">Screen</bdi> بدون توجه به اندازه آن حتماً یک <bdi dir="ltr">Hook</bdi> داشته باشد. استخراج منطق زمانی انجام می‌شود که خوانایی، تست‌پذیری یا استفاده مجدد را بهتر کند؛ <bdi dir="ltr">Screen</bdi> ساده <bdi dir="ltr">Profile</bdi> عمداً مستقیم و کوچک باقی مانده است.
+</p>
 
-### Data Access و API
+<h3 dir="rtl" align="right"><bdi dir="ltr">Data Access</bdi> و <bdi dir="ltr">API</bdi></h3>
 
-Data Access شامل React Query hooks، Query Keyها، Mutationها و API Moduleهای یک Domain است. API Module فقط Endpoint، Method، Payload و نوع پاسخ را می‌شناسد و هیچ تصمیم نمایشی نمی‌گیرد.
+<p dir="rtl" align="right">
+<bdi dir="ltr">Data Access</bdi> شامل <bdi dir="ltr">React Query hooks</bdi>، <bdi dir="ltr">Query Key</bdi>ها، <bdi dir="ltr">Mutation</bdi>ها و <bdi dir="ltr">API Module</bdi>های یک <bdi dir="ltr">Domain</bdi> است. <bdi dir="ltr">API Module</bdi> فقط <bdi dir="ltr">Endpoint</bdi>، <bdi dir="ltr">Method</bdi>، <bdi dir="ltr">Payload</bdi> و نوع پاسخ را می‌شناسد و هیچ تصمیم نمایشی نمی‌گیرد.
+</p>
 
-این مرزبندی اجازه می‌دهد Backend واقعی، Mock API، سیاست Cache یا کتابخانه انتقال HTTP بدون بازنویسی Screenها تغییر کند.
+<p dir="rtl" align="right">
+این مرزبندی اجازه می‌دهد <bdi dir="ltr">Backend</bdi> واقعی، <bdi dir="ltr">Mock API</bdi>، سیاست <bdi dir="ltr">Cache</bdi> یا کتابخانه انتقال <bdi dir="ltr">HTTP</bdi> بدون بازنویسی <bdi dir="ltr">Screen</bdi>ها تغییر کند.
+</p>
 
-### Domain
+<h3 dir="rtl" align="right"><bdi dir="ltr">Domain</bdi></h3>
 
-`users-domain` شامل مدل‌های `User`، `UserRole` و ورودی‌های مربوط به کاربر است. این لایه به React، Next.js، MUI یا React Query وابسته نیست. مستقل‌بودن Domain از Framework از انتشار وابستگی‌های UI و Data Fetching به مدل‌های اصلی جلوگیری می‌کند.
+<p dir="rtl" align="right">
+<code dir="ltr">users-domain</code> شامل مدل‌های <code dir="ltr">User</code>، <code dir="ltr">UserRole</code> و ورودی‌های مربوط به کاربر است. این لایه به <bdi dir="ltr">React</bdi>، <bdi dir="ltr">Next.js</bdi>، <bdi dir="ltr">MUI</bdi> یا <bdi dir="ltr">React Query</bdi> وابسته نیست. مستقل‌بودن <bdi dir="ltr">Domain</bdi> از <bdi dir="ltr">Framework</bdi> از انتشار وابستگی‌های <bdi dir="ltr">UI</bdi> و <bdi dir="ltr">Data Fetching</bdi> به مدل‌های اصلی جلوگیری می‌کند.
+</p>
 
-### Public API
+<h3 dir="rtl" align="right"><bdi dir="ltr">Public API</bdi></h3>
 
-هر Library یک `src/index.ts` دارد. مصرف‌کننده‌ها از Aliasهایی مانند موارد زیر استفاده می‌کنند:
+<p dir="rtl" align="right">
+هر <bdi dir="ltr">Library</bdi> یک <code dir="ltr">src/index.ts</code> دارد. مصرف‌کننده‌ها از <bdi dir="ltr">Alias</bdi>هایی مانند موارد زیر استفاده می‌کنند:
+</p>
 
 ```ts
 import { UsersListScreen } from "@saas/admin/users/feature";
 import { useUser } from "@saas/users/data-access";
 ```
 
-فایل‌های داخلی Feature مستقیماً Deep Import نمی‌شوند. Public API سطح قابل پشتیبانی Library را مشخص می‌کند، Refactor داخلی را کم‌هزینه‌تر می‌سازد و از وابستگی به جزئیات پیاده‌سازی جلوگیری می‌کند.
+<p dir="rtl" align="right">
+فایل‌های داخلی <bdi dir="ltr">Feature</bdi> مستقیماً <bdi dir="ltr">Deep Import</bdi> نمی‌شوند. <bdi dir="ltr">Public API</bdi> سطح قابل پشتیبانی <bdi dir="ltr">Library</bdi> را مشخص می‌کند، <bdi dir="ltr">Refactor</bdi> داخلی را کم‌هزینه‌تر می‌سازد و از وابستگی به جزئیات پیاده‌سازی جلوگیری می‌کند.
+</p>
 
 ## تصمیم متفاوت برای Admin و Profile
 
 اندازه، نرخ رشد و مدل مالکیت دو محصول یکسان فرض نشده است؛ به همین دلیل Granularity پروژه‌های Nx در آن‌ها عمداً متفاوت است.
 
-### Profile
+<h3 dir="rtl" align="right"><bdi dir="ltr">Profile</bdi></h3>
 
-Profile فعلاً یک قابلیت کوچک و منسجم دارد و فرض شده در آینده یک تیم مالک کل این محصول باشد. Feature پروفایل در مسیر زیر قرار گرفته است:
+<p dir="rtl" align="right">
+<bdi dir="ltr">Profile</bdi> فعلاً یک قابلیت کوچک و منسجم دارد و فرض شده در آینده یک تیم مالک کل این محصول باشد. <bdi dir="ltr">Feature</bdi> پروفایل در مسیر زیر قرار گرفته است:
+</p>
 
 ```text
 apps/profile/src/features/profile/profile-screen.tsx
@@ -415,77 +441,94 @@ flowchart LR
   HTTP --> Target[Real Backend / MSW]
 ```
 
-React Query و `fetch` نقش یکسان ندارند. React Query چرخه Server State شامل Cache، Loading، Error، Retry، Cancellation و Invalidation را مدیریت می‌کند. `fetch` ابزار انتقال HTTP است و فقط داخل `shared-http-client` استفاده می‌شود.
+<p dir="rtl" align="right">
+<bdi dir="ltr">React Query</bdi> و <code dir="ltr">fetch</code> نقش یکسان ندارند. <bdi dir="ltr">React Query</bdi> چرخه <bdi dir="ltr">Server State</bdi> شامل <bdi dir="ltr">Cache</bdi>، <bdi dir="ltr">Loading</bdi>، <bdi dir="ltr">Error</bdi>، <bdi dir="ltr">Retry</bdi>، <bdi dir="ltr">Cancellation</bdi> و <bdi dir="ltr">Invalidation</bdi> را مدیریت می‌کند. <code dir="ltr">fetch</code> ابزار انتقال <bdi dir="ltr">HTTP</bdi> است و فقط داخل <code dir="ltr">shared-http-client</code> استفاده می‌شود.
+</p>
 
-HTTP Client مشترک وظایف زیر را متمرکز می‌کند:
+<p dir="rtl" align="right">
+<bdi dir="ltr">HTTP Client</bdi> مشترک وظایف زیر را متمرکز می‌کند:
+</p>
 
-- Serialize کردن JSON و تنظیم Headerها
-- Parse کردن پاسخ
-- تبدیل پاسخ ناموفق به `HttpError` دارای Status و Body
-- فراهم‌کردن متدهای یکسان `get`, `post`, `put`, `patch`, `delete`
+<ul dir="rtl" align="right">
+  <li><bdi dir="ltr">Serialize</bdi> کردن <bdi dir="ltr">JSON</bdi> و تنظیم <bdi dir="ltr">Header</bdi>ها</li>
+  <li><bdi dir="ltr">Parse</bdi> کردن پاسخ</li>
+  <li>تبدیل پاسخ ناموفق به <code dir="ltr">HttpError</code> دارای <bdi dir="ltr">Status</bdi> و <bdi dir="ltr">Body</bdi></li>
+  <li>فراهم‌کردن متدهای یکسان <bdi dir="ltr"><code>get</code>, <code>post</code>, <code>put</code>, <code>patch</code>, <code>delete</code></bdi></li>
+</ul>
 
-ESLint استفاده مستقیم از `fetch` را در `apps` و سایر `libs` ممنوع می‌کند تا این قرارداد در طول زمان شکسته نشود.
+<p dir="rtl" align="right">
+<bdi dir="ltr">ESLint</bdi> استفاده مستقیم از <code dir="ltr">fetch</code> را در <code dir="ltr">apps</code> و سایر <code dir="ltr">libs</code> ممنوع می‌کند تا این قرارداد در طول زمان شکسته نشود.
+</p>
 
-برای Queryهای خواندنی، `AbortSignal` به HTTP Client منتقل می‌شود؛ بنابراین React Query می‌تواند Request بلااستفاده را لغو کند. پس از Mutation نیز Queryهای مرتبط Invalid می‌شوند تا UI با داده سرور همگام بماند.
+<p dir="rtl" align="right">
+برای <bdi dir="ltr">Query</bdi>های خواندنی، <code dir="ltr">AbortSignal</code> به <bdi dir="ltr">HTTP Client</bdi> منتقل می‌شود؛ بنابراین <bdi dir="ltr">React Query</bdi> می‌تواند <bdi dir="ltr">Request</bdi> بلااستفاده را لغو کند. پس از <bdi dir="ltr">Mutation</bdi> نیز <bdi dir="ltr">Query</bdi>های مرتبط <bdi dir="ltr">Invalid</bdi> می‌شوند تا <bdi dir="ltr">UI</bdi> با داده سرور همگام بماند.
+</p>
 
 ## احراز هویت و Protected Routes
 
-Authentication در Library مشترک `auth` قرار دارد، چون هر دو محصول به Login، Logout، بازیابی Session و محافظت Route نیاز دارند.
+<p dir="rtl" align="right">
+<bdi dir="ltr">Authentication</bdi> در <bdi dir="ltr">Library</bdi> مشترک <code dir="ltr">auth</code> قرار دارد، چون هر دو محصول به <bdi dir="ltr">Login</bdi>، <bdi dir="ltr">Logout</bdi>، بازیابی <bdi dir="ltr">Session</bdi> و محافظت <bdi dir="ltr">Route</bdi> نیاز دارند.
+</p>
 
-- Zustand فقط وضعیت Client شامل User، Token و Hydration را نگه می‌دارد.
-- React Query اعتبار Session را از `/api/auth/me` بررسی می‌کند.
-- `AuthProvider` وضعیت Persistشده و Session سمت سرور را هماهنگ می‌کند.
-- Login و Logout به‌صورت Mutation پیاده شده‌اند.
-- هنگام تغییر حساب یا Logout، Queryهای فعال لغو و Cache پاک می‌شود تا داده کاربر قبلی به کاربر بعدی نشت نکند.
-- پاسخ `401` یا `403` Session را نامعتبر می‌کند؛ خطای موقت شبکه به‌عنوان Logout تفسیر نمی‌شود و امکان Retry دارد.
+<ul dir="rtl" align="right">
+  <li><bdi dir="ltr">Zustand</bdi> فقط وضعیت <bdi dir="ltr">Client</bdi> شامل <bdi dir="ltr">User</bdi>، <bdi dir="ltr">Token</bdi> و <bdi dir="ltr">Hydration</bdi> را نگه می‌دارد.</li>
+  <li><bdi dir="ltr">React Query</bdi> اعتبار <bdi dir="ltr">Session</bdi> را از <code dir="ltr">/api/auth/me</code> بررسی می‌کند.</li>
+  <li><code dir="ltr">AuthProvider</code> وضعیت <bdi dir="ltr">Persist</bdi>شده و <bdi dir="ltr">Session</bdi> سمت سرور را هماهنگ می‌کند.</li>
+  <li><bdi dir="ltr">Login</bdi> و <bdi dir="ltr">Logout</bdi> به‌صورت <bdi dir="ltr">Mutation</bdi> پیاده شده‌اند.</li>
+  <li>هنگام تغییر حساب یا <bdi dir="ltr">Logout</bdi>، <bdi dir="ltr">Query</bdi>های فعال لغو و <bdi dir="ltr">Cache</bdi> پاک می‌شود تا داده کاربر قبلی به کاربر بعدی نشت نکند.</li>
+  <li>پاسخ <code dir="ltr">401</code> یا <code dir="ltr">403</code> <bdi dir="ltr">Session</bdi> را نامعتبر می‌کند؛ خطای موقت شبکه به‌عنوان <bdi dir="ltr">Logout</bdi> تفسیر نمی‌شود و امکان <bdi dir="ltr">Retry</bdi> دارد.</li>
+</ul>
 
-`ProtectedRoute` در Layout گروه `(protected)` هر اپ قرار گرفته است. در نتیجه لازم نیست هر Page دوباره Guard را تعریف کند و هیچ Route جدیدی در این گروه به‌صورت اتفاقی بدون محافظ باقی نمی‌ماند. Admin علاوه بر ورود معتبر، نقش `admin` را نیز کنترل می‌کند.
+<p dir="rtl" align="right">
+<code dir="ltr">ProtectedRoute</code> در <bdi dir="ltr">Layout</bdi> گروه <code dir="ltr">(protected)</code> هر اپ قرار گرفته است. در نتیجه لازم نیست هر <bdi dir="ltr">Page</bdi> دوباره <bdi dir="ltr">Guard</bdi> را تعریف کند و هیچ <bdi dir="ltr">Route</bdi> جدیدی در این گروه به‌صورت اتفاقی بدون محافظ باقی نمی‌ماند. <bdi dir="ltr">Admin</bdi> علاوه بر ورود معتبر، نقش <code dir="ltr">admin</code> را نیز کنترل می‌کند.
+</p>
 
-Mock فعلی Token را در Storage مرورگر نگه می‌دارد. در Backend واقعی، استفاده از Cookie امن `HttpOnly` می‌تواند خطر دسترسی JavaScript به Token را کاهش دهد و باید همراه سیاست CSRF مناسب طراحی شود.
+<p dir="rtl" align="right">
+<bdi dir="ltr">Mock</bdi> فعلی <bdi dir="ltr">Token</bdi> را در <bdi dir="ltr">Storage</bdi> مرورگر نگه می‌دارد. در <bdi dir="ltr">Backend</bdi> واقعی، استفاده از <bdi dir="ltr">Cookie</bdi> امن <code dir="ltr">HttpOnly</code> می‌تواند خطر دسترسی <bdi dir="ltr">JavaScript</bdi> به <bdi dir="ltr">Token</bdi> را کاهش دهد و باید همراه سیاست <bdi dir="ltr">CSRF</bdi> مناسب طراحی شود.
+</p>
 
 ## مدیریت Loading و Error
 
-Loading و Error بخشی از قرارداد هر عملیات Async در نظر گرفته شده‌اند:
+<p dir="rtl" align="right">
+<bdi dir="ltr">Loading</bdi> و <bdi dir="ltr">Error</bdi> بخشی از قرارداد هر عملیات <bdi dir="ltr">Async</bdi> در نظر گرفته شده‌اند:
+</p>
 
-- بارگذاری اولیه صفحه با `PageLoading` نمایش داده می‌شود.
-- خطای Query با `PageError` و امکان Retry نمایش داده می‌شود.
-- Loading مربوط به بازیابی Session قبل از نمایش Route محافظت‌شده کل صفحه را می‌پوشاند.
-- دکمه‌های Login، Logout، Create، Edit و Delete هنگام Mutation وضعیت Loading دارند و غیرفعال می‌شوند.
-- در عملیات حساس به کلیک تکراری، علاوه بر `isPending` از Lock هم استفاده شده تا فاصله کوتاه قبل از Render بعدی باعث ارسال Request دوم نشود.
-- موفقیت و خطای Mutationها با Toast فارسی اعلام می‌شود.
-- شکست راه‌اندازی Mock API به‌جای صفحه خالی با پیام مشخص نمایش داده می‌شود.
+<ul dir="rtl" align="right">
+  <li>بارگذاری اولیه صفحه با <code dir="ltr">PageLoading</code> نمایش داده می‌شود.</li>
+  <li>خطای <bdi dir="ltr">Query</bdi> با <code dir="ltr">PageError</code> و امکان <bdi dir="ltr">Retry</bdi> نمایش داده می‌شود.</li>
+  <li><bdi dir="ltr">Loading</bdi> مربوط به بازیابی <bdi dir="ltr">Session</bdi> قبل از نمایش <bdi dir="ltr">Route</bdi> محافظت‌شده کل صفحه را می‌پوشاند.</li>
+  <li>دکمه‌های <bdi dir="ltr">Login</bdi>، <bdi dir="ltr">Logout</bdi>، <bdi dir="ltr">Create</bdi>، <bdi dir="ltr">Edit</bdi> و <bdi dir="ltr">Delete</bdi> هنگام <bdi dir="ltr">Mutation</bdi> وضعیت <bdi dir="ltr">Loading</bdi> دارند و غیرفعال می‌شوند.</li>
+  <li>در عملیات حساس به کلیک تکراری، علاوه بر <code dir="ltr">isPending</code> از <bdi dir="ltr">Lock</bdi> هم استفاده شده تا فاصله کوتاه قبل از <bdi dir="ltr">Render</bdi> بعدی باعث ارسال <bdi dir="ltr">Request</bdi> دوم نشود.</li>
+  <li>موفقیت و خطای <bdi dir="ltr">Mutation</bdi>ها با <bdi dir="ltr">Toast</bdi> فارسی اعلام می‌شود.</li>
+  <li>شکست راه‌اندازی <bdi dir="ltr">Mock API</bdi> به‌جای صفحه خالی با پیام مشخص نمایش داده می‌شود.</li>
+</ul>
 
-سیاست عمومی React Query در `shared-app-runtime` متمرکز است: خطاهای `4xx` دوباره امتحان نمی‌شوند، خطاهای موقت Query حداکثر یک بار Retry می‌شوند و Mutationها Retry خودکار ندارند تا عملیات تغییردهنده ناخواسته تکرار نشوند.
+<p dir="rtl" align="right">
+سیاست عمومی <bdi dir="ltr">React Query</bdi> در <code dir="ltr">shared-app-runtime</code> متمرکز است: خطاهای <code dir="ltr">4xx</code> دوباره امتحان نمی‌شوند، خطاهای موقت <bdi dir="ltr">Query</bdi> حداکثر یک بار <bdi dir="ltr">Retry</bdi> می‌شوند و <bdi dir="ltr">Mutation</bdi>ها <bdi dir="ltr">Retry</bdi> خودکار ندارند تا عملیات تغییردهنده ناخواسته تکرار نشوند.
+</p>
 
 ## دلیل انتخاب تکنولوژی‌ها
 
-| تکنولوژی                       | مسئولیت                         | دلیل انتخاب                                                                                                     |
-| ------------------------------ | ------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| **Nx**                         | مدیریت Monorepo و Project Graph | نمایش و کنترل وابستگی‌ها، Tag-based boundaries، Cache، اجرای Taskها و امکان استفاده از `affected` با رشد تیم‌ها |
-| **Next.js App Router**         | Routing و Layout هر محصول       | Routeهای فایل‌محور، Layoutهای تو‌در‌تو، Loading/Error boundary و حفظ استقلال Build هر محصول                     |
-| **React + TypeScript Strict**  | UI و Type Safety                | قرارداد روشن میان Domain، API و Componentها و کشف خطاهای Refactor پیش از Runtime                                |
-| **TanStack React Query**       | Server State                    | Cache، Deduplication، Retry، Cancellation، Mutation و Invalidation استاندارد در هر دو اپ                        |
-| **Fetch + Shared HTTP Client** | انتقال HTTP                     | استفاده از API استاندارد مرورگر بدون وابستگی اضافی و حفظ یک نقطه مشترک برای Parse و Error normalization         |
-| **Zustand**                    | Client State احراز هویت         | API کوچک و مناسب برای User، Token و Hydration؛ داده سرور در React Query تکرار نمی‌شود                           |
-| **Material UI**                | Design system و Componentها     | سرعت توسعه مطابق پیشنهاد تسک، دسترس‌پذیری پایه، Theme مشترک و پشتیبانی مناسب از Layout واکنش‌گرا                |
-| **Emotion + Stylis RTL**       | استایل راست‌چین                 | اعمال RTL واقعی به Styleهای تولیدشده MUI در کنار `dir="rtl"`                                                    |
-| **Formik**                     | مدیریت فرم                      | مدیریت Field، Submit و Error state فرم‌های ساخت و ویرایش کاربر                                                  |
-| **Yup**                        | Validation                      | Schema قابل استفاده مجدد و جدا از JSX برای Validation فرم                                                       |
-| **MSW**                        | Mock API                        | شبیه‌سازی API در سطح شبکه؛ Featureها همان Request واقعی را می‌فرستند و به Mock بودن Backend وابسته نمی‌شوند     |
-| **react-hot-toast**            | بازخورد عملیات                  | نمایش یکسان Loading، Success و Error برای Mutationها بدون افزودن State نمایشی تکراری                            |
-| **Vitest**                     | تست واحد                        | اجرای سریع تست قرارداد API، Query Key، سیاست Retry و Validation                                                 |
-| **ESLint + Prettier**          | کیفیت و یکپارچگی کد             | اجرای خودکار قواعد مرزی Nx، جلوگیری از `fetch` مستقیم و یکسان‌سازی قالب کد                                      |
+<p dir="rtl" align="right">
+دلیل انتخاب <bdi dir="ltr">Nx</bdi> و <bdi dir="ltr">Next.js</bdi> در بخش‌های <a href="#انتخاب-nx">انتخاب Nx</a> و <a href="#انتخاب-nextjs">انتخاب Next.js</a> توضیح داده شده است. جدول زیر نقش و دلیل انتخاب سایر ابزارها را خلاصه می‌کند.
+</p>
 
-### چرا Nx؟
+<table dir="rtl" align="right">
+  <thead><tr><th>تکنولوژی</th><th>نقش و دلیل انتخاب</th></tr></thead>
+  <tbody>
+    <tr><td><bdi dir="ltr">React + TypeScript Strict</bdi></td><td>ساخت رابط با قراردادهای نوعی روشن و کشف خطا پیش از اجرا.</td></tr>
+    <tr><td><bdi dir="ltr">TanStack React Query</bdi></td><td>مدیریت یکپارچهٔ دادهٔ سرور، کش و وضعیت درخواست‌ها در هر دو اپ.</td></tr>
+    <tr><td><bdi dir="ltr">Fetch + Shared HTTP Client</bdi></td><td>ارسال درخواست با API استاندارد و متمرکزکردن پردازش پاسخ و خطا.</td></tr>
+    <tr><td><bdi dir="ltr">Zustand</bdi></td><td>نگه‌داری وضعیت احراز هویت سمت کلاینت، جدا از دادهٔ سرور.</td></tr>
+    <tr><td><bdi dir="ltr">Material UI + Emotion + Stylis RTL</bdi></td><td>ساخت سریع رابط واکنش‌گرا با تم مشترک و استایل راست‌به‌چپ.</td></tr>
+    <tr><td><bdi dir="ltr">Formik + Yup</bdi></td><td>مدیریت فرم‌ها و اعتبارسنجی قابل استفادهٔ مجدد، جدا از کد نمایشی.</td></tr>
+    <tr><td><bdi dir="ltr">MSW</bdi></td><td>شبیه‌سازی پاسخ API در سطح شبکه برای اجرای پروژه بدون بک‌اند واقعی.</td></tr>
+    <tr><td><bdi dir="ltr">react-hot-toast</bdi></td><td>نمایش یکسان بازخورد موفقیت و خطای عملیات.</td></tr>
+    <tr><td><bdi dir="ltr">Vitest</bdi></td><td>تست قراردادهای داده و منطق مستقل از رابط کاربری.</td></tr>
+    <tr><td><bdi dir="ltr">ESLint + Prettier</bdi></td><td>کنترل قواعد معماری و یکسان‌سازی قالب کد.</td></tr>
+  </tbody>
+</table>
 
-نیاز اصلی این سناریو فقط قرار دادن چند پوشه در یک Repository نیست. با افزایش محصولات و تیم‌ها باید بتوان فهمید چه پروژه‌ای به کدام بخش وابسته است، چه تغییری چه Build/Testهایی را متاثر می‌کند و آیا یک تیم مرز محصول دیگر را شکسته است. Nx این اطلاعات را از Importهای واقعی استخراج می‌کند و آن‌ها را برای Graph، Cache و `affected` به کار می‌گیرد.
-
-Projectها با دو گروه Tag کنترل می‌شوند:
-
-- Tagهای نوع: `type:app`, `type:app-shell`, `type:feature`, `type:data-access`, `type:domain`, `type:ui`
-- Tagهای محدوده: `scope:admin`, `scope:profile`, `scope:users`, `scope:shared`
-
-برای مثال Admin اجازه وابستگی به محدوده‌های `admin`، `users` و `shared` را دارد؛ Profile نمی‌تواند Feature اختصاصی Admin را Import کند. همچنین Domain فقط می‌تواند به Domain وابسته شود. این قوانین با `@nx/enforce-module-boundaries` در ESLint بررسی می‌شوند و صرفاً یک توافق شفاهی میان تیم‌ها نیستند.
 
 ## توسعه پروژه با Featureها و تیم‌های جدید
 
