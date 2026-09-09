@@ -136,7 +136,7 @@ NEXT_PUBLIC_ENABLE_MOCKS=true
 مزیت تعیین‌کنندهٔ <bdi dir="ltr">Nx</bdi> برای این تسک، تبدیل مرزهای معماری به قوانین قابل بررسی است. در <code dir="ltr">eslint.config.mjs</code>، قانون <code dir="ltr">@nx/enforce-module-boundaries</code> با تگ‌های نوع و محدوده فعال است؛ مثلاً <bdi dir="ltr">Profile</bdi> نمی‌تواند قابلیت اختصاصی <bdi dir="ltr">Admin</bdi> را وارد کند و <bdi dir="ltr">Domain</bdi> به لایه‌های نمایشی وابسته نمی‌شود. این تصمیم بر قابلیت واقعی استفاده‌شده در مخزن تکیه دارد. جزئیات این امکان در <a href="https://nx.dev/docs/guides/enforce-module-boundaries">مستندات مرزبندی Nx</a> آمده است.
 </p>
 
-<table dir="rtl" align="right">
+<table dir="rtl">
   <thead><tr><th>معیار</th><th><bdi dir="ltr">Nx</bdi></th><th><bdi dir="ltr">Turborepo + pnpm</bdi></th></tr></thead>
   <tbody>
     <tr><td>پیچیدگی راه‌اندازی</td><td>در ساختار فعلی بیشتر؛ تعریف پروژه‌ها، تگ‌ها و قواعد</td><td>برای شروع با پکیج‌ها و اسکریپت‌ها معمولاً کمتر</td></tr>
@@ -513,28 +513,37 @@ flowchart LR
 دلیل انتخاب <bdi dir="ltr">Nx</bdi> و <bdi dir="ltr">Next.js</bdi> در بخش‌های <a href="#انتخاب-nx">انتخاب Nx</a> و <a href="#انتخاب-nextjs">انتخاب Next.js</a> توضیح داده شده است. جدول زیر نقش و دلیل انتخاب سایر ابزارها را خلاصه می‌کند.
 </p>
 
-<table dir="rtl" align="right">
-  <thead><tr><th>تکنولوژی</th><th>نقش و دلیل انتخاب</th></tr></thead>
+<table dir="rtl">
+  <thead>
+    <tr>
+      <th dir="rtl" align="right">تکنولوژی</th>
+      <th dir="rtl" align="right">نقش و دلیل انتخاب</th>
+    </tr>
+  </thead>
   <tbody>
-    <tr><td><bdi dir="ltr">React + TypeScript Strict</bdi></td><td>ساخت رابط با قراردادهای نوعی روشن و کشف خطا پیش از اجرا.</td></tr>
-    <tr><td><bdi dir="ltr">TanStack React Query</bdi></td><td>مدیریت یکپارچهٔ دادهٔ سرور، کش و وضعیت درخواست‌ها در هر دو اپ.</td></tr>
-    <tr><td><bdi dir="ltr">Fetch + Shared HTTP Client</bdi></td><td>ارسال درخواست با API استاندارد و متمرکزکردن پردازش پاسخ و خطا.</td></tr>
-    <tr><td><bdi dir="ltr">Zustand</bdi></td><td>نگه‌داری وضعیت احراز هویت سمت کلاینت، جدا از دادهٔ سرور.</td></tr>
-    <tr><td><bdi dir="ltr">Material UI + Emotion + Stylis RTL</bdi></td><td>ساخت سریع رابط واکنش‌گرا با تم مشترک و استایل راست‌به‌چپ.</td></tr>
-    <tr><td><bdi dir="ltr">Formik + Yup</bdi></td><td>مدیریت فرم‌ها و اعتبارسنجی قابل استفادهٔ مجدد، جدا از کد نمایشی.</td></tr>
-    <tr><td><bdi dir="ltr">MSW</bdi></td><td>شبیه‌سازی پاسخ API در سطح شبکه برای اجرای پروژه بدون بک‌اند واقعی.</td></tr>
-    <tr><td><bdi dir="ltr">react-hot-toast</bdi></td><td>نمایش یکسان بازخورد موفقیت و خطای عملیات.</td></tr>
-    <tr><td><bdi dir="ltr">Vitest</bdi></td><td>تست قراردادهای داده و منطق مستقل از رابط کاربری.</td></tr>
-    <tr><td><bdi dir="ltr">ESLint + Prettier</bdi></td><td>کنترل قواعد معماری و یکسان‌سازی قالب کد.</td></tr>
+    <tr><td dir="rtl" align="right"><bdi dir="ltr">React + TypeScript Strict</bdi></td><td dir="rtl" align="right">ساخت رابط با قراردادهای نوعی روشن و کشف خطا پیش از اجرا.</td></tr>
+    <tr><td dir="rtl" align="right"><bdi dir="ltr">TanStack React Query</bdi></td><td dir="rtl" align="right">مدیریت یکپارچهٔ دادهٔ سرور، کش و وضعیت درخواست‌ها در هر دو اپ.</td></tr>
+    <tr><td dir="rtl" align="right"><bdi dir="ltr">Fetch + Shared HTTP Client</bdi></td><td dir="rtl" align="right">ارسال درخواست با <bdi dir="ltr">API</bdi> استاندارد و متمرکزکردن پردازش پاسخ و خطا.</td></tr>
+    <tr><td dir="rtl" align="right"><bdi dir="ltr">Zustand</bdi></td><td dir="rtl" align="right">نگه‌داری وضعیت احراز هویت سمت کلاینت، جدا از دادهٔ سرور.</td></tr>
+    <tr><td dir="rtl" align="right"><bdi dir="ltr">Material UI + Emotion + Stylis RTL</bdi></td><td dir="rtl" align="right">ساخت سریع رابط واکنش‌گرا با تم مشترک و استایل راست‌به‌چپ.</td></tr>
+    <tr><td dir="rtl" align="right"><bdi dir="ltr">Formik + Yup</bdi></td><td dir="rtl" align="right">مدیریت فرم‌ها و اعتبارسنجی قابل استفادهٔ مجدد، جدا از کد نمایشی.</td></tr>
+    <tr><td dir="rtl" align="right"><bdi dir="ltr">MSW</bdi></td><td dir="rtl" align="right">شبیه‌سازی پاسخ <bdi dir="ltr">API</bdi> در سطح شبکه برای اجرای پروژه بدون بک‌اند واقعی.</td></tr>
+    <tr><td dir="rtl" align="right"><bdi dir="ltr">react-hot-toast</bdi></td><td dir="rtl" align="right">نمایش یکسان بازخورد موفقیت و خطای عملیات.</td></tr>
+    <tr><td dir="rtl" align="right"><bdi dir="ltr">Vitest</bdi></td><td dir="rtl" align="right">تست قراردادهای داده و منطق مستقل از رابط کاربری.</td></tr>
+    <tr><td dir="rtl" align="right"><bdi dir="ltr">ESLint + Prettier</bdi></td><td dir="rtl" align="right">کنترل قواعد معماری و یکسان‌سازی قالب کد.</td></tr>
   </tbody>
 </table>
 
 
+<br clear="all" />
+
 ## توسعه پروژه با Featureها و تیم‌های جدید
 
-### افزودن Feature بزرگ به Admin
+<h3 dir="rtl" align="right">افزودن <bdi dir="ltr">Feature</bdi> بزرگ به <bdi dir="ltr">Admin</bdi></h3>
 
-برای Feature مستقلی مانند Billing که تیم یا چرخه توسعه جدا دارد:
+<p dir="rtl" align="right">
+برای <bdi dir="ltr">Feature</bdi> مستقلی مانند <bdi dir="ltr">Billing</bdi> که تیم یا چرخه توسعه جدا دارد:
+</p>
 
 ```text
 libs/admin/billing/
