@@ -1,16 +1,20 @@
 "use client";
 
-import { Card, CardContent, CircularProgress, Stack, Typography } from "@mui/material";
+import { Alert, Card, CardContent, Stack, Typography } from "@mui/material";
 import { useAuth } from "@saas/auth";
+import { PageError, PageLoading } from "@saas/ui";
 import { useUser } from "@saas/users/data-access";
 
 export function ProfileScreen() {
   const { user: authenticatedUser } = useAuth();
   const userQuery = useUser(authenticatedUser?.id ?? "");
 
-  if (userQuery.isLoading) return <CircularProgress />;
+  if (userQuery.isLoading) return <PageLoading />;
+  if (userQuery.error) {
+    return <PageError message={userQuery.error.message} reset={() => void userQuery.refetch()} />;
+  }
   if (!userQuery.data) {
-    return <Typography color="error">اطلاعات کاربر در دسترس نیست</Typography>;
+    return <Alert severity="error">اطلاعات کاربر در دسترس نیست</Alert>;
   }
 
   const user = userQuery.data;

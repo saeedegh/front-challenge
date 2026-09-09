@@ -1,29 +1,12 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { Card, CardContent, Typography } from "@mui/material";
-import toast from "react-hot-toast";
-import { useCreateUser } from "@saas/users/data-access";
-import type { UserInput } from "@saas/users/domain";
 import { UserForm } from "../components/user-form";
-import { useQueryClient } from "@tanstack/react-query";
-import { dashboardKeys } from "@saas/admin/dashboard/data-access";
+import { useCreateUserController } from "../hooks/use-create-user-controller";
 
 export function CreateUserScreen() {
-  const router = useRouter();
-  const mutation = useCreateUser();
-  const queryClient = useQueryClient();
-  async function submit(values: UserInput) {
-    const id = toast.loading("در حال ساخت کاربر…");
-    try {
-      await mutation.mutateAsync(values);
-      await queryClient.invalidateQueries({ queryKey: dashboardKeys.all });
-      toast.success("کاربر با موفقیت ساخته شد", { id });
-      router.push("/users");
-    } catch (error) {
-      toast.error((error as Error).message, { id });
-    }
-  }
+  const { submit, cancel, isSubmitting } = useCreateUserController();
+
   return (
     <>
       <Typography variant="h4" gutterBottom>
@@ -33,9 +16,9 @@ export function CreateUserScreen() {
         <CardContent>
           <UserForm
             submitLabel="ساخت کاربر"
-            isSubmitting={mutation.isPending}
+            isSubmitting={isSubmitting}
             onSubmit={submit}
-            onCancel={() => router.push("/users")}
+            onCancel={cancel}
           />
         </CardContent>
       </Card>

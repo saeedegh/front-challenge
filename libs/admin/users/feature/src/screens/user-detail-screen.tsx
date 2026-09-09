@@ -1,27 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import EditIcon from "@mui/icons-material/Edit";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import {
-  Alert,
-  Box,
-  Button,
-  Card,
-  CardContent,
-  Chip,
-  CircularProgress,
-  Divider,
-  Stack,
-  Typography,
-} from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import { Alert, Box, Button } from "@mui/material";
+import { PageError, PageLoading } from "@saas/ui";
 import { useUser } from "@saas/users/data-access";
+import { UserDetailsCard } from "../components/user-details-card";
 
 export function UserDetailScreen({ userId }: { userId: string }) {
-  const { data: user, isLoading, error } = useUser(userId);
-  if (isLoading) return <CircularProgress />;
-  if (error) return <Alert severity="error">{error.message}</Alert>;
-  if (!user) return null;
+  const { data: user, isLoading, error, refetch } = useUser(userId);
+
+  if (isLoading) return <PageLoading />;
+  if (error) return <PageError message={error.message} reset={() => void refetch()} />;
+  if (!user) return <Alert severity="error">اطلاعات کاربر در دسترس نیست</Alert>;
+
   return (
     <>
       <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}>
@@ -37,38 +30,7 @@ export function UserDetailScreen({ userId }: { userId: string }) {
           ویرایش کاربر
         </Button>
       </Box>
-      <Card sx={{ maxWidth: 720 }}>
-        <CardContent>
-          <Stack direction="row" sx={{ justifyContent: "space-between", alignItems: "center" }}>
-            <Typography variant="h4">{user.name}</Typography>
-            <Chip
-              label={user.role === "admin" ? "مدیر" : "کاربر"}
-              color={user.role === "admin" ? "primary" : "default"}
-            />
-          </Stack>
-          <Divider sx={{ my: 3 }} />
-          <Stack spacing={2}>
-            <Box>
-              <Typography color="text.secondary" variant="body2">
-                ایمیل
-              </Typography>
-              <Typography>{user.email}</Typography>
-            </Box>
-            <Box>
-              <Typography color="text.secondary" variant="body2">
-                واحد سازمانی
-              </Typography>
-              <Typography>{user.department || "—"}</Typography>
-            </Box>
-            <Box>
-              <Typography color="text.secondary" variant="body2">
-                تاریخ ساخت
-              </Typography>
-              <Typography>{new Date(user.createdAt).toLocaleString("fa-IR")}</Typography>
-            </Box>
-          </Stack>
-        </CardContent>
-      </Card>
+      <UserDetailsCard user={user} />
     </>
   );
 }

@@ -1,30 +1,18 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { Alert, Card, CardContent, CircularProgress, Typography } from "@mui/material";
-import toast from "react-hot-toast";
-import { useUpdateUser, useUser } from "@saas/users/data-access";
-import type { UserInput } from "@saas/users/domain";
+import { Alert, Card, CardContent, Typography } from "@mui/material";
+import { PageError, PageLoading } from "@saas/ui";
 import { UserForm } from "../components/user-form";
+import { useEditUserController } from "../hooks/use-edit-user-controller";
 
 export function EditUserScreen({ userId }: { userId: string }) {
-  const router = useRouter();
-  const userQuery = useUser(userId);
-  const mutation = useUpdateUser(userId);
-  async function submit(values: UserInput) {
-    const id = toast.loading("در حال ویرایش کاربر…");
-    try {
-      await mutation.mutateAsync(values);
-      toast.success("اطلاعات کاربر با موفقیت ویرایش شد", { id });
-      router.push(`/users/${userId}`);
-    } catch (error) {
-      toast.error((error as Error).message, { id });
-    }
-  }
-  if (userQuery.isLoading) return <CircularProgress />;
-  if (userQuery.error) return <Alert severity="error">{userQuery.error.message}</Alert>;
-  if (!userQuery.data) return null;
-  const user = userQuery.data;
+  const { initialValues, error, isLoading, retry, isSubmitting, submit, cancel } =
+    useEditUserController(userId);
+
+  if (isLoading) return <PageLoading />;
+  if (error) return <PageError message={error.message} reset={() => void retry()} />;
+  if (!initialValues) return <Alert severity="error">اطلاعات کاربر در دسترس نیست</Alert>;
+
   return (
     <>
       <Typography variant="h4" gutterBottom>
@@ -33,16 +21,11 @@ export function EditUserScreen({ userId }: { userId: string }) {
       <Card sx={{ maxWidth: 680 }}>
         <CardContent>
           <UserForm
-            initialValues={{
-              name: user.name,
-              email: user.email,
-              department: user.department ?? "",
-              role: user.role,
-            }}
+            initialValues={initialValues}
             submitLabel="ذخیره تغییرات"
-            isSubmitting={mutation.isPending}
+            isSubmitting={isSubmitting}
             onSubmit={submit}
-            onCancel={() => router.push(`/users/${userId}`)}
+            onCancel={cancel}
           />
         </CardContent>
       </Card>

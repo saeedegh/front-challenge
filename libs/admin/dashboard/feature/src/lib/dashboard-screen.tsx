@@ -2,13 +2,15 @@
 
 import PeopleIcon from "@mui/icons-material/People";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import { Alert, Card, CardContent, CircularProgress, Grid, Typography } from "@mui/material";
+import { Card, CardContent, Grid, Typography } from "@mui/material";
 import { useDashboardSummary } from "@saas/admin/dashboard/data-access";
+import { PageError, PageLoading } from "@saas/ui";
 
 export function DashboardScreen() {
-  const { data, isLoading, error } = useDashboardSummary();
-  if (isLoading) return <CircularProgress />;
-  if (error) return <Alert severity="error">{error.message}</Alert>;
+  const { data, isLoading, error, refetch } = useDashboardSummary();
+
+  if (isLoading) return <PageLoading />;
+  if (error) return <PageError message={error.message} reset={() => void refetch()} />;
 
   return (
     <>

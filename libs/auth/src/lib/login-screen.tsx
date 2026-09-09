@@ -1,9 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { Alert, Box, Button, Card, CardContent, TextField, Typography } from "@mui/material";
-import { useAuth } from "./use-auth";
+import { useLoginController } from "./use-login-controller";
 
 interface LoginScreenProps {
   title: string;
@@ -18,20 +16,8 @@ export function LoginScreen({
   defaultEmail,
   defaultPassword,
 }: LoginScreenProps) {
-  const { login, isLoading } = useAuth();
-  const router = useRouter();
-  const [error, setError] = useState("");
-  async function submit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setError("");
-    const data = new FormData(event.currentTarget);
-    const result = await login({
-      email: String(data.get("email")),
-      password: String(data.get("password")),
-    });
-    if (result.success) router.replace(successPath);
-    else setError(result.error || "ورود ناموفق بود");
-  }
+  const { error, isLoading, submit } = useLoginController(successPath);
+
   return (
     <Box sx={{ minHeight: "100vh", display: "grid", placeItems: "center", p: 2 }}>
       <Card sx={{ maxWidth: 420, width: "100%" }}>

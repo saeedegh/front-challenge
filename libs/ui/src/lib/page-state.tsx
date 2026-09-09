@@ -10,7 +10,12 @@ export function PageLoading() {
   );
 }
 
-export function PageError({ reset }: { reset: () => void }) {
+interface PageErrorProps {
+  reset: () => void;
+  message?: string;
+}
+
+export function PageError({ reset, message = "نمایش این صفحه با خطا مواجه شد." }: PageErrorProps) {
   return (
     <Alert
       severity="error"
@@ -20,7 +25,7 @@ export function PageError({ reset }: { reset: () => void }) {
         </Button>
       }
     >
-      نمایش این صفحه با خطا مواجه شد.
+      {message}
     </Alert>
   );
 }
