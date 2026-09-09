@@ -238,7 +238,9 @@ NEXT_PUBLIC_ENABLE_MOCKS=true
 | Shared      |      ۵ | `auth`, `ui`, `shared-app-runtime`, `shared-http-client`, `shared-mock-api`     |
 | **مجموع**   | **۱۲** | **۲ App + ۱۰ Library**                                                          |
 
-Libraryها فقط برای اشتراک کد ساخته نشده‌اند. در Admin، بعضی Libraryها مرز مالکیت، نوع وابستگی و واحد مستقل Cache/Affected در Nx نیز هستند. در مقابل، کوچک‌ترین فایل یا Feature به Library تبدیل نشده تا گراف پروژه بی‌دلیل بزرگ و نگه‌داری آن پرهزینه نشود.
+<p dir="rtl" align="right">
+<bdi dir="ltr">Library</bdi>ها فقط برای اشتراک کد ساخته نشده‌اند. در <bdi dir="ltr">Admin</bdi>، بعضی <bdi dir="ltr">Library</bdi>ها مرز مالکیت، نوع وابستگی و واحد مستقل <bdi dir="ltr">Cache/Affected</bdi> در <bdi dir="ltr">Nx</bdi> نیز هستند. در مقابل، کوچک‌ترین فایل یا <bdi dir="ltr">Feature</bdi> به <bdi dir="ltr">Library</bdi> تبدیل نشده تا گراف پروژه بی‌دلیل بزرگ و نگه‌داری آن پرهزینه نشود.
+</p>
 
 ## گراف وابستگی Nx
 
