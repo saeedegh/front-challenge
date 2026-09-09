@@ -26,9 +26,12 @@ The `apps` directories are composition roots: they own Next.js routing, metadata
 - `libs/ui`: presentational, product-agnostic UI and layout components.
 - `libs/auth`: authentication flows, route protection, and authenticated layout composition.
 - `libs/shared/app-runtime`: shared application providers.
+- `libs/shared/http-client`: the single Fetch-based HTTP transport and normalized API errors.
 - `libs/shared/mock-api`: development-only MSW handlers and Persian fixtures.
 
 Dependencies flow from apps to features, from features to data access and domain, and from data access to domain. `npm run lint` enforces these boundaries from Nx project tags.
+
+All server-state operations use React Query hooks. API modules call the shared HTTP client as their transport; screens and providers never call `fetch` directly. Query loading, errors, retries, cancellation, and cache invalidation therefore follow one policy across both apps.
 
 Mocks start automatically in development. Set `NEXT_PUBLIC_ENABLE_MOCKS=true` to explicitly enable them in another environment. Production uses real `/api` endpoints unless this flag is set.
 

@@ -5,7 +5,6 @@ import type { AuthState, User } from "./auth.types";
 type Store = AuthState & {
   setAuth: (u: User, t: string) => void;
   clearAuth: () => void;
-  setLoading: (v: boolean) => void;
   setHydrated: (value: boolean) => void;
 };
 export const useAuthStore = create<Store>()(
@@ -14,17 +13,14 @@ export const useAuthStore = create<Store>()(
       user: null,
       token: null,
       isAuthenticated: false,
-      isLoading: false,
       isHydrated: false,
-      setAuth: (user, token) => set({ user, token, isAuthenticated: true, isLoading: false }),
+      setAuth: (user, token) => set({ user, token, isAuthenticated: true }),
       clearAuth: () =>
         set({
           user: null,
           token: null,
           isAuthenticated: false,
-          isLoading: false,
         }),
-      setLoading: (isLoading) => set({ isLoading }),
       setHydrated: (isHydrated) => set({ isHydrated }),
     }),
     {

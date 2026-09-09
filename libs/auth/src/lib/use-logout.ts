@@ -1,19 +1,27 @@
 "use client";
 
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { authService } from "./auth.service";
-import { useAuthStore } from "./auth.store";
+import { useLogoutMutation } from "./auth.mutations";
 
 export function useLogout() {
   const router = useRouter();
-  const clearAuth = useAuthStore((state) => state.clearAuth);
+  const logoutMutation = useLogoutMutation();
+  const lockRef = useRef(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
-  return async function logout() {
+  async function logout() {
+    if (lockRef.current) return;
+
+    lockRef.current = true;
+    setIsLoggingOut(true);
+
     try {
-      await authService.logout();
+      await logoutMutation.mutateAsync();
     } finally {
-      clearAuth();
       router.replace("/login");
     }
-  };
+  }
+
+  return { logout, isLoggingOut: isLoggingOut || logoutMutation.isPending };
 }

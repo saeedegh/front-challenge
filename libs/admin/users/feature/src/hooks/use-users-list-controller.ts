@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
@@ -14,14 +14,18 @@ export function useUsersListController() {
   const usersQuery = useUsers();
   const deleteMutation = useDeleteUser();
   const [pendingDelete, setPendingDelete] = useState<User | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const deleteLockRef = useRef(false);
 
   function editUser(userId: string) {
     router.push(`/users/${userId}/edit`);
   }
 
   async function confirmDelete() {
-    if (!pendingDelete) return;
+    if (!pendingDelete || deleteLockRef.current) return;
 
+    deleteLockRef.current = true;
+    setIsDeleting(true);
     const toastId = toast.loading("در حال حذف کاربر…");
 
     try {
@@ -31,6 +35,9 @@ export function useUsersListController() {
       setPendingDelete(null);
     } catch (error) {
       toast.error((error as Error).message, { id: toastId });
+    } finally {
+      deleteLockRef.current = false;
+      setIsDeleting(false);
     }
   }
 
@@ -38,9 +45,10 @@ export function useUsersListController() {
     users: usersQuery.data,
     error: usersQuery.error,
     isLoading: usersQuery.isLoading,
+    isRetrying: usersQuery.isFetching,
     retry: usersQuery.refetch,
     pendingDelete,
-    isDeleting: deleteMutation.isPending,
+    isDeleting: isDeleting || deleteMutation.isPending,
     editUser,
     requestDelete: setPendingDelete,
     cancelDelete: () => setPendingDelete(null),

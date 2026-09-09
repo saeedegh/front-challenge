@@ -13,6 +13,7 @@ export function UsersListScreen() {
     users,
     error,
     isLoading,
+    isRetrying,
     retry,
     pendingDelete,
     isDeleting,
@@ -32,7 +33,7 @@ export function UsersListScreen() {
       </Box>
 
       {isLoading && <PageLoading />}
-      {error && <PageError message={error.message} reset={() => void retry()} />}
+      {error && <PageError message={error.message} isRetrying={isRetrying} reset={() => retry()} />}
       {users && <UsersTable users={users} onEdit={editUser} onDelete={requestDelete} />}
 
       <DeleteUserDialog

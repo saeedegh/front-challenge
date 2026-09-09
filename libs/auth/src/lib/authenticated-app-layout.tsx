@@ -11,6 +11,6 @@ interface AuthenticatedAppLayoutProps {
 }
 
 export function AuthenticatedAppLayout(props: AuthenticatedAppLayoutProps) {
-  const logout = useLogout();
-  return <AppLayout {...props} onLogout={logout} />;
+  const { logout, isLoggingOut } = useLogout();
+  return <AppLayout {...props} onLogout={logout} isLoggingOut={isLoggingOut} />;
 }

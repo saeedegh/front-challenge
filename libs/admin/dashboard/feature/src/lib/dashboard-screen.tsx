@@ -7,10 +7,12 @@ import { useDashboardSummary } from "@saas/admin/dashboard/data-access";
 import { PageError, PageLoading } from "@saas/ui";
 
 export function DashboardScreen() {
-  const { data, isLoading, error, refetch } = useDashboardSummary();
+  const { data, isLoading, isFetching, error, refetch } = useDashboardSummary();
 
   if (isLoading) return <PageLoading />;
-  if (error) return <PageError message={error.message} reset={() => void refetch()} />;
+  if (error) {
+    return <PageError message={error.message} isRetrying={isFetching} reset={() => refetch()} />;
+  }
 
   return (
     <>

@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { Alert, CssBaseline, ThemeProvider } from "@mui/material";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import { AuthProvider } from "@saas/auth";
-import { RtlProvider, theme } from "@saas/ui";
+import { PageLoading, RtlProvider, theme } from "@saas/ui";
+import { createAppQueryClient } from "./query-client";
 
 interface AppProvidersProps {
   children: React.ReactNode;
@@ -13,9 +14,7 @@ interface AppProvidersProps {
 }
 
 export function AppProviders({ children, enableMocks = false }: AppProvidersProps) {
-  const [queryClient] = useState(
-    () => new QueryClient({ defaultOptions: { queries: { retry: 1, staleTime: 30_000 } } }),
-  );
+  const [queryClient] = useState(createAppQueryClient);
   const [mockState, setMockState] = useState<"loading" | "ready" | "failed">(
     enableMocks ? "loading" : "ready",
   );
@@ -39,7 +38,9 @@ export function AppProviders({ children, enableMocks = false }: AppProvidersProp
         <Toaster position="top-left" />
         {mockState === "failed" ? (
           <Alert severity="error">راه‌اندازی سرویس آزمایشی با خطا مواجه شد.</Alert>
-        ) : mockState === "loading" ? null : (
+        ) : mockState === "loading" ? (
+          <PageLoading fullPage />
+        ) : (
           <QueryClientProvider client={queryClient}>
             <AuthProvider>{children}</AuthProvider>
           </QueryClientProvider>

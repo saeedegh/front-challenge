@@ -11,7 +11,13 @@ export function ProfileScreen() {
 
   if (userQuery.isLoading) return <PageLoading />;
   if (userQuery.error) {
-    return <PageError message={userQuery.error.message} reset={() => void userQuery.refetch()} />;
+    return (
+      <PageError
+        message={userQuery.error.message}
+        isRetrying={userQuery.isFetching}
+        reset={() => userQuery.refetch()}
+      />
+    );
   }
   if (!userQuery.data) {
     return <Alert severity="error">اطلاعات کاربر در دسترس نیست</Alert>;

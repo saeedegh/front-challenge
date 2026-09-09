@@ -35,6 +35,7 @@ interface AppLayoutProps {
   navigationItems: AppNavigationItem[];
   children: React.ReactNode;
   onLogout: () => void | Promise<void>;
+  isLoggingOut?: boolean;
 }
 
 export function AppLayout({
@@ -43,6 +44,7 @@ export function AppLayout({
   navigationItems,
   children,
   onLogout,
+  isLoggingOut = false,
 }: AppLayoutProps) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -93,8 +95,14 @@ export function AppLayout({
           </IconButton>
           <Typography variant="h6">{title}</Typography>
           <Box sx={{ flexGrow: 1 }} />
-          <Button color="inherit" startIcon={<LogoutIcon />} onClick={onLogout}>
-            خروج
+          <Button
+            color="inherit"
+            startIcon={<LogoutIcon />}
+            loading={isLoggingOut}
+            loadingPosition="start"
+            onClick={onLogout}
+          >
+            {isLoggingOut ? "در حال خروج…" : "خروج"}
           </Button>
         </Toolbar>
       </AppBar>

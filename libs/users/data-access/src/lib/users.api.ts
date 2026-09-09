@@ -1,39 +1,20 @@
+import { httpClient } from "@saas/shared/http-client";
 import type { User, UserInput } from "@saas/users/domain";
 
-async function readResponse<T>(response: Response): Promise<T> {
-  const body = (await response.json()) as T & { message?: string };
-  if (!response.ok) {
-    throw new Error(body.message ?? "انجام درخواست با خطا مواجه شد");
-  }
-  return body;
-}
-
 export const usersApi = {
-  async getAll() {
-    return readResponse<User[]>(await fetch("/api/users"));
+  getAll(signal?: AbortSignal) {
+    return httpClient.get<User[]>("/api/users", { signal });
   },
-  async getById(id: string) {
-    return readResponse<User>(await fetch(`/api/users/${id}`));
+  getById(id: string, signal?: AbortSignal) {
+    return httpClient.get<User>(`/api/users/${id}`, { signal });
   },
-  async create(input: UserInput) {
-    return readResponse<User>(
-      await fetch("/api/users", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(input),
-      }),
-    );
+  create(input: UserInput) {
+    return httpClient.post<User, UserInput>("/api/users", input);
   },
-  async update(id: string, input: UserInput) {
-    return readResponse<User>(
-      await fetch(`/api/users/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(input),
-      }),
-    );
+  update(id: string, input: UserInput) {
+    return httpClient.put<User, UserInput>(`/api/users/${id}`, input);
   },
-  async delete(id: string) {
-    return readResponse<{ id: string }>(await fetch(`/api/users/${id}`, { method: "DELETE" }));
+  delete(id: string) {
+    return httpClient.delete<{ id: string }>(`/api/users/${id}`);
   },
 };

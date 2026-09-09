@@ -10,13 +10,21 @@ interface DeleteUserDialogProps {
 
 export function DeleteUserDialog({ user, isDeleting, onCancel, onConfirm }: DeleteUserDialogProps) {
   return (
-    <Dialog open={Boolean(user)} onClose={onCancel}>
+    <Dialog
+      open={Boolean(user)}
+      onClose={() => {
+        if (!isDeleting) onCancel();
+      }}
+      aria-busy={isDeleting}
+    >
       <DialogTitle>حذف کاربر</DialogTitle>
       <DialogContent>آیا از حذف «{user?.name}» مطمئن هستید؟</DialogContent>
       <DialogActions>
-        <Button onClick={onCancel}>انصراف</Button>
-        <Button color="error" variant="contained" disabled={isDeleting} onClick={onConfirm}>
-          حذف
+        <Button onClick={onCancel} disabled={isDeleting}>
+          انصراف
+        </Button>
+        <Button color="error" variant="contained" loading={isDeleting} onClick={onConfirm}>
+          {isDeleting ? "در حال حذف…" : "حذف"}
         </Button>
       </DialogActions>
     </Dialog>

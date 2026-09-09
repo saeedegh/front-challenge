@@ -1,0 +1,6 @@
+{
+  "name": "shared-http-client",
+  "sourceRoot": "libs/shared/http-client/src",
+  "projectType": "library",
+  "tags": ["scope:shared", "type:data-access"]
+}

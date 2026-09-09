@@ -69,4 +69,17 @@ export default [
       ],
     },
   },
+  {
+    files: ["apps/**/*.{ts,tsx}", "libs/**/*.{ts,tsx}"],
+    ignores: ["libs/shared/http-client/src/lib/http-client.ts"],
+    rules: {
+      "no-restricted-globals": [
+        "error",
+        {
+          name: "fetch",
+          message: "درخواست‌های HTTP باید از @saas/shared/http-client عبور کنند.",
+        },
+      ],
+    },
+  },
 ];

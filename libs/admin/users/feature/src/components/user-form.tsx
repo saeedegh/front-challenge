@@ -37,8 +37,11 @@ export function UserForm({
     validationSchema: userFormSchema,
     onSubmit,
   });
+
+  const submitting = isSubmitting || formik.isSubmitting;
+
   return (
-    <Box component="form" onSubmit={formik.handleSubmit} noValidate>
+    <Box component="form" onSubmit={formik.handleSubmit} noValidate aria-busy={submitting}>
       <TextField
         fullWidth
         margin="normal"
@@ -49,6 +52,7 @@ export function UserForm({
         onBlur={formik.handleBlur}
         error={formik.touched.name && Boolean(formik.errors.name)}
         helperText={formik.touched.name && formik.errors.name}
+        disabled={submitting}
       />
       <TextField
         fullWidth
@@ -61,6 +65,7 @@ export function UserForm({
         onBlur={formik.handleBlur}
         error={formik.touched.email && Boolean(formik.errors.email)}
         helperText={formik.touched.email && formik.errors.email}
+        disabled={submitting}
       />
       <TextField
         fullWidth
@@ -72,11 +77,13 @@ export function UserForm({
         onBlur={formik.handleBlur}
         error={formik.touched.department && Boolean(formik.errors.department)}
         helperText={formik.touched.department && formik.errors.department}
+        disabled={submitting}
       />
       <FormControl
         fullWidth
         margin="normal"
         error={formik.touched.role && Boolean(formik.errors.role)}
+        disabled={submitting}
       >
         <InputLabel id="role-label">نقش</InputLabel>
         <Select
@@ -95,11 +102,11 @@ export function UserForm({
         )}
       </FormControl>
       <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 1, mt: 3 }}>
-        <Button onClick={onCancel} disabled={isSubmitting}>
+        <Button onClick={onCancel} disabled={submitting}>
           انصراف
         </Button>
-        <Button type="submit" variant="contained" disabled={isSubmitting}>
-          {isSubmitting ? "در حال ذخیره…" : submitLabel}
+        <Button type="submit" variant="contained" loading={submitting}>
+          {submitting ? "در حال ذخیره…" : submitLabel}
         </Button>
       </Box>
     </Box>

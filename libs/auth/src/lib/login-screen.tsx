@@ -26,13 +26,14 @@ export function LoginScreen({
             {title}
           </Typography>
           {error && <Alert severity="error">{error}</Alert>}
-          <Box component="form" onSubmit={submit}>
+          <Box component="form" onSubmit={submit} aria-busy={isLoading}>
             <TextField
               name="email"
               label="ایمیل"
               defaultValue={defaultEmail}
               fullWidth
               margin="normal"
+              disabled={isLoading}
             />
             <TextField
               name="password"
@@ -41,8 +42,9 @@ export function LoginScreen({
               defaultValue={defaultPassword}
               fullWidth
               margin="normal"
+              disabled={isLoading}
             />
-            <Button type="submit" variant="contained" fullWidth disabled={isLoading}>
+            <Button type="submit" variant="contained" fullWidth loading={isLoading}>
               {isLoading ? "در حال ورود…" : "ورود"}
             </Button>
           </Box>

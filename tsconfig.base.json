@@ -15,6 +15,7 @@
       "@saas/admin/dashboard/data-access": ["./libs/admin/dashboard/data-access/src/index.ts"],
       "@saas/admin/dashboard/feature": ["./libs/admin/dashboard/feature/src/index.ts"],
       "@saas/shared/app-runtime": ["./libs/shared/app-runtime/src/index.ts"],
+      "@saas/shared/http-client": ["./libs/shared/http-client/src/index.ts"],
       "@saas/shared/mock-api": ["./libs/shared/mock-api/src/index.ts"]
     }
   }

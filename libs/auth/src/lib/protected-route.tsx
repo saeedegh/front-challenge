@@ -1,7 +1,7 @@
 "use client";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { CircularProgress } from "@mui/material";
+import { PageError, PageLoading } from "@saas/ui";
 import { useAuth } from "./use-auth";
 import type { UserRole } from "@saas/users/domain";
 
@@ -11,21 +11,48 @@ interface ProtectedRouteProps {
 }
 
 export function ProtectedRoute({ children, allowedRoles }: ProtectedRouteProps) {
-  const { user, isAuthenticated, isHydrated, isLoading, clearAuth } = useAuth();
+  const {
+    user,
+    isAuthenticated,
+    isHydrated,
+    isSessionLoading,
+    isSessionRetrying,
+    sessionError,
+    retrySession,
+    clearAuth,
+  } = useAuth();
   const router = useRouter();
   const hasAllowedRole = !allowedRoles || (user && allowedRoles.includes(user.role));
 
   useEffect(() => {
-    if (!isHydrated || isLoading) return;
+    if (!isHydrated || isSessionLoading || sessionError) return;
     if (!isAuthenticated) router.replace("/login");
     else if (!hasAllowedRole) {
       clearAuth();
       router.replace("/login");
     }
-  }, [clearAuth, hasAllowedRole, isAuthenticated, isHydrated, isLoading, router]);
+  }, [
+    clearAuth,
+    hasAllowedRole,
+    isAuthenticated,
+    isHydrated,
+    isSessionLoading,
+    router,
+    sessionError,
+  ]);
 
-  if (!isHydrated || isLoading || !isAuthenticated || !hasAllowedRole) {
-    return <CircularProgress />;
+  if (sessionError) {
+    return (
+      <PageError
+        message={sessionError.message}
+        isRetrying={isSessionRetrying}
+        reset={retrySession}
+      />
+    );
+  }
+
+  if (!isHydrated || isSessionLoading || !isAuthenticated || !hasAllowedRole) {
+    return <PageLoading fullPage />;
   }
   return <>{children}</>;
 }

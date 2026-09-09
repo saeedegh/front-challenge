@@ -1,31 +1,37 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { useAuth } from "./use-auth";
+import { useLoginMutation } from "./auth.mutations";
 
 export function useLoginController(successPath: string) {
-  const { login, isLoading } = useAuth();
   const router = useRouter();
+  const loginMutation = useLoginMutation();
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const lockRef = useRef(false);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (lockRef.current) return;
+
+    lockRef.current = true;
+    setIsSubmitting(true);
     setError("");
 
     const data = new FormData(event.currentTarget);
-    const result = await login({
-      email: String(data.get("email")),
-      password: String(data.get("password")),
-    });
-
-    if (result.success) {
+    try {
+      await loginMutation.mutateAsync({
+        email: String(data.get("email")),
+        password: String(data.get("password")),
+      });
       router.replace(successPath);
-      return;
+    } catch (error) {
+      setError((error as Error).message || "ورود ناموفق بود");
+      lockRef.current = false;
+      setIsSubmitting(false);
     }
-
-    setError(result.error || "ورود ناموفق بود");
   }
 
-  return { error, isLoading, submit };
+  return { error, isLoading: loginMutation.isPending || isSubmitting, submit };
 }

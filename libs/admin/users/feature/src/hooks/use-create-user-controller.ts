@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
@@ -11,8 +12,14 @@ export function useCreateUserController() {
   const router = useRouter();
   const queryClient = useQueryClient();
   const mutation = useCreateUser();
+  const lockRef = useRef(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function submit(values: UserInput) {
+    if (lockRef.current) return;
+
+    lockRef.current = true;
+    setIsSubmitting(true);
     const toastId = toast.loading("در حال ساخت کاربر…");
 
     try {
@@ -22,12 +29,14 @@ export function useCreateUserController() {
       router.push("/users");
     } catch (error) {
       toast.error((error as Error).message, { id: toastId });
+      lockRef.current = false;
+      setIsSubmitting(false);
     }
   }
 
   return {
     submit,
     cancel: () => router.push("/users"),
-    isSubmitting: mutation.isPending,
+    isSubmitting: isSubmitting || mutation.isPending,
   };
 }

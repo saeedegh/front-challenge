@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
@@ -12,8 +13,14 @@ export function useEditUserController(userId: string) {
   const queryClient = useQueryClient();
   const userQuery = useUser(userId);
   const mutation = useUpdateUser(userId);
+  const lockRef = useRef(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function submit(values: UserInput) {
+    if (lockRef.current) return;
+
+    lockRef.current = true;
+    setIsSubmitting(true);
     const toastId = toast.loading("در حال ویرایش کاربر…");
 
     try {
@@ -23,6 +30,8 @@ export function useEditUserController(userId: string) {
       router.push(`/users/${userId}`);
     } catch (error) {
       toast.error((error as Error).message, { id: toastId });
+      lockRef.current = false;
+      setIsSubmitting(false);
     }
   }
 
@@ -39,8 +48,9 @@ export function useEditUserController(userId: string) {
     initialValues,
     error: userQuery.error,
     isLoading: userQuery.isLoading,
+    isRetrying: userQuery.isFetching,
     retry: userQuery.refetch,
-    isSubmitting: mutation.isPending,
+    isSubmitting: isSubmitting || mutation.isPending,
     submit,
     cancel: () => router.push(`/users/${userId}`),
   };

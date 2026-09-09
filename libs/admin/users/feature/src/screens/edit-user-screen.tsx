@@ -6,11 +6,13 @@ import { UserForm } from "../components/user-form";
 import { useEditUserController } from "../hooks/use-edit-user-controller";
 
 export function EditUserScreen({ userId }: { userId: string }) {
-  const { initialValues, error, isLoading, retry, isSubmitting, submit, cancel } =
+  const { initialValues, error, isLoading, isRetrying, retry, isSubmitting, submit, cancel } =
     useEditUserController(userId);
 
   if (isLoading) return <PageLoading />;
-  if (error) return <PageError message={error.message} reset={() => void retry()} />;
+  if (error) {
+    return <PageError message={error.message} isRetrying={isRetrying} reset={() => retry()} />;
+  }
   if (!initialValues) return <Alert severity="error">اطلاعات کاربر در دسترس نیست</Alert>;
 
   return (

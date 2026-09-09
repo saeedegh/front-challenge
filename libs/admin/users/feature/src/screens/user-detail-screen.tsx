@@ -9,10 +9,12 @@ import { useUser } from "@saas/users/data-access";
 import { UserDetailsCard } from "../components/user-details-card";
 
 export function UserDetailScreen({ userId }: { userId: string }) {
-  const { data: user, isLoading, error, refetch } = useUser(userId);
+  const { data: user, isLoading, isFetching, error, refetch } = useUser(userId);
 
   if (isLoading) return <PageLoading />;
-  if (error) return <PageError message={error.message} reset={() => void refetch()} />;
+  if (error) {
+    return <PageError message={error.message} isRetrying={isFetching} reset={() => refetch()} />;
+  }
   if (!user) return <Alert severity="error">اطلاعات کاربر در دسترس نیست</Alert>;
 
   return (
