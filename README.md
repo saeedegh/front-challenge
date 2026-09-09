@@ -7,6 +7,8 @@
 - [قابلیت‌های پیاده‌سازی‌شده](#قابلیتهای-پیادهسازیشده)
 - [اجرای پروژه](#اجرای-پروژه)
 - [معماری انتخاب‌شده](#معماری-انتخابشده)
+  - [دلیل انتخاب تکنولوژی‌ها](#دلیل-انتخاب-تکنولوژیها)
+  - [توسعه پروژه با Featureها و تیم‌های جدید](#توسعه-پروژه-با-featureها-و-تیمهای-جدید)
 - [ساختار مخزن](#ساختار-مخزن)
 - [پروژه‌ها و Libraryهای Nx](#پروژهها-و-libraryهای-nx)
 - [گراف وابستگی Nx](#گراف-وابستگی-nx)
@@ -15,8 +17,6 @@
 - [مدیریت API و Server State](#مدیریت-api-و-server-state)
 - [احراز هویت و Protected Routes](#احراز-هویت-و-protected-routes)
 - [مدیریت Loading و Error](#مدیریت-loading-و-error)
-- [دلیل انتخاب تکنولوژی‌ها](#دلیل-انتخاب-تکنولوژیها)
-- [توسعه پروژه با Featureها و تیم‌های جدید](#توسعه-پروژه-با-featureها-و-تیمهای-جدید)
 - [کنترل کیفیت](#کنترل-کیفیت)
 
 ## قابلیت‌های پیاده‌سازی‌شده
@@ -169,6 +169,82 @@ NEXT_PUBLIC_ENABLE_MOCKS=true
 <p dir="rtl" align="right">
 برای صفحات مدیریتی فعلی، <bdi dir="ltr">SEO</bdi> و دریافت داده در سرور دلیل اصلی انتخاب نیستند؛ داده‌های صفحات فعلی با <bdi dir="ltr">React Query</bdi> در سمت کلاینت دریافت می‌شوند. ترکیب <bdi dir="ltr">React + Vite</bdi> هم گزینهٔ معتبری بود و برای یک اپ صرفاً کلاینتی می‌توانست ساده‌تر باشد. در این تسک، یکپارچگی قراردادهای مسیریابی و ساختار دو محصول به هزینهٔ یادگیری و تنظیمات بیشتر فریم‌ورک ترجیح داده شده است.
 </p>
+
+### دلیل انتخاب تکنولوژی‌ها
+
+<p dir="rtl" align="right">
+دلیل انتخاب <bdi dir="ltr">Nx</bdi> و <bdi dir="ltr">Next.js</bdi> در بخش‌های <a href="#انتخاب-nx">انتخاب Nx</a> و <a href="#انتخاب-nextjs">انتخاب Next.js</a> توضیح داده شده است. جدول زیر نقش و دلیل انتخاب سایر ابزارها را خلاصه می‌کند.
+</p>
+
+<table dir="rtl">
+  <thead>
+    <tr>
+      <th dir="rtl" align="right">تکنولوژی</th>
+      <th dir="rtl" align="right">نقش و دلیل انتخاب</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td dir="rtl" align="right"><bdi dir="ltr">React + TypeScript Strict</bdi></td><td dir="rtl" align="right">ساخت رابط با قراردادهای نوعی روشن و کشف خطا پیش از اجرا.</td></tr>
+    <tr><td dir="rtl" align="right"><bdi dir="ltr">TanStack React Query</bdi></td><td dir="rtl" align="right">مدیریت یکپارچهٔ دادهٔ سرور، کش و وضعیت درخواست‌ها در هر دو اپ.</td></tr>
+    <tr><td dir="rtl" align="right"><bdi dir="ltr">Fetch + Shared HTTP Client</bdi></td><td dir="rtl" align="right">ارسال درخواست با <bdi dir="ltr">API</bdi> استاندارد و متمرکزکردن پردازش پاسخ و خطا.</td></tr>
+    <tr><td dir="rtl" align="right"><bdi dir="ltr">Zustand</bdi></td><td dir="rtl" align="right">نگه‌داری وضعیت احراز هویت سمت کلاینت، جدا از دادهٔ سرور.</td></tr>
+    <tr><td dir="rtl" align="right"><bdi dir="ltr">Material UI + Emotion + Stylis RTL</bdi></td><td dir="rtl" align="right">ساخت سریع رابط واکنش‌گرا با تم مشترک و استایل راست‌به‌چپ.</td></tr>
+    <tr><td dir="rtl" align="right"><bdi dir="ltr">Formik + Yup</bdi></td><td dir="rtl" align="right">مدیریت فرم‌ها و اعتبارسنجی قابل استفادهٔ مجدد، جدا از کد نمایشی.</td></tr>
+    <tr><td dir="rtl" align="right"><bdi dir="ltr">MSW</bdi></td><td dir="rtl" align="right">شبیه‌سازی پاسخ <bdi dir="ltr">API</bdi> در سطح شبکه برای اجرای پروژه بدون بک‌اند واقعی.</td></tr>
+    <tr><td dir="rtl" align="right"><bdi dir="ltr">react-hot-toast</bdi></td><td dir="rtl" align="right">نمایش یکسان بازخورد موفقیت و خطای عملیات.</td></tr>
+    <tr><td dir="rtl" align="right"><bdi dir="ltr">Vitest</bdi></td><td dir="rtl" align="right">تست قراردادهای داده و منطق مستقل از رابط کاربری.</td></tr>
+    <tr><td dir="rtl" align="right"><bdi dir="ltr">ESLint + Prettier</bdi></td><td dir="rtl" align="right">کنترل قواعد معماری و یکسان‌سازی قالب کد.</td></tr>
+  </tbody>
+</table>
+
+
+<br clear="all" />
+
+### توسعه پروژه با Featureها و تیم‌های جدید
+
+<h4 dir="rtl" align="right">افزودن <bdi dir="ltr">Feature</bdi> بزرگ به <bdi dir="ltr">Admin</bdi></h4>
+
+<p dir="rtl" align="right">
+برای <bdi dir="ltr">Feature</bdi> مستقلی مانند <bdi dir="ltr">Billing</bdi> که تیم یا چرخه توسعه جدا دارد:
+</p>
+
+```text
+libs/admin/billing/
+├── feature/
+│   ├── project.json
+│   └── src/
+│       ├── screens/
+│       ├── components/
+│       ├── hooks/
+│       └── index.ts
+└── data-access/
+    ├── project.json
+    └── src/
+        ├── billing.api.ts
+        ├── billing.keys.ts
+        ├── billing.queries.ts
+        └── index.ts
+```
+
+Route مربوط به آن فقط Screen را در `apps/admin/app/(protected)` Compose می‌کند. Tagهای `scope:admin` و نوع مناسب نیز باید به Projectها افزوده شوند.
+
+#### افزودن Feature کوچک به Profile
+
+تا زمانی که Featureها توسط یک تیم و در یک چرخه Release نگه‌داری می‌شوند:
+
+```text
+apps/profile/src/features/<feature-name>/
+```
+
+اگر تعداد تیم‌ها، اندازه کد یا نیاز به مرز مستقل افزایش یافت، Feature به `libs/profile/<feature-name>` منتقل و Tagهای Nx برای آن تعریف می‌شود. معیار استخراج، مالکیت و هزینه هماهنگی است، نه صرفاً تعداد فایل‌ها.
+
+#### افزودن محصول جدید
+
+1. یک Next.js App جدید در `apps/<product>` ساخته می‌شود.
+2. Scope جدید مانند `scope:billing` تعریف می‌شود.
+3. قوانین مجاز وابستگی آن Scope به ESLint اضافه می‌شود.
+4. `AppProviders`، Auth و UI مشترک در Root Layout Compose می‌شوند.
+5. فقط قابلیت‌های واقعاً مشترک از `libs` مصرف می‌شوند و Featureهای اختصاصی در Scope محصول باقی می‌مانند.
 
 ## ساختار مخزن
 
@@ -506,82 +582,6 @@ flowchart LR
 <p dir="rtl" align="right">
 سیاست عمومی <bdi dir="ltr">React Query</bdi> در <code dir="ltr">shared-app-runtime</code> متمرکز است: خطاهای <code dir="ltr">4xx</code> دوباره امتحان نمی‌شوند، خطاهای موقت <bdi dir="ltr">Query</bdi> حداکثر یک بار <bdi dir="ltr">Retry</bdi> می‌شوند و <bdi dir="ltr">Mutation</bdi>ها <bdi dir="ltr">Retry</bdi> خودکار ندارند تا عملیات تغییردهنده ناخواسته تکرار نشوند.
 </p>
-
-## دلیل انتخاب تکنولوژی‌ها
-
-<p dir="rtl" align="right">
-دلیل انتخاب <bdi dir="ltr">Nx</bdi> و <bdi dir="ltr">Next.js</bdi> در بخش‌های <a href="#انتخاب-nx">انتخاب Nx</a> و <a href="#انتخاب-nextjs">انتخاب Next.js</a> توضیح داده شده است. جدول زیر نقش و دلیل انتخاب سایر ابزارها را خلاصه می‌کند.
-</p>
-
-<table dir="rtl">
-  <thead>
-    <tr>
-      <th dir="rtl" align="right">تکنولوژی</th>
-      <th dir="rtl" align="right">نقش و دلیل انتخاب</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td dir="rtl" align="right"><bdi dir="ltr">React + TypeScript Strict</bdi></td><td dir="rtl" align="right">ساخت رابط با قراردادهای نوعی روشن و کشف خطا پیش از اجرا.</td></tr>
-    <tr><td dir="rtl" align="right"><bdi dir="ltr">TanStack React Query</bdi></td><td dir="rtl" align="right">مدیریت یکپارچهٔ دادهٔ سرور، کش و وضعیت درخواست‌ها در هر دو اپ.</td></tr>
-    <tr><td dir="rtl" align="right"><bdi dir="ltr">Fetch + Shared HTTP Client</bdi></td><td dir="rtl" align="right">ارسال درخواست با <bdi dir="ltr">API</bdi> استاندارد و متمرکزکردن پردازش پاسخ و خطا.</td></tr>
-    <tr><td dir="rtl" align="right"><bdi dir="ltr">Zustand</bdi></td><td dir="rtl" align="right">نگه‌داری وضعیت احراز هویت سمت کلاینت، جدا از دادهٔ سرور.</td></tr>
-    <tr><td dir="rtl" align="right"><bdi dir="ltr">Material UI + Emotion + Stylis RTL</bdi></td><td dir="rtl" align="right">ساخت سریع رابط واکنش‌گرا با تم مشترک و استایل راست‌به‌چپ.</td></tr>
-    <tr><td dir="rtl" align="right"><bdi dir="ltr">Formik + Yup</bdi></td><td dir="rtl" align="right">مدیریت فرم‌ها و اعتبارسنجی قابل استفادهٔ مجدد، جدا از کد نمایشی.</td></tr>
-    <tr><td dir="rtl" align="right"><bdi dir="ltr">MSW</bdi></td><td dir="rtl" align="right">شبیه‌سازی پاسخ <bdi dir="ltr">API</bdi> در سطح شبکه برای اجرای پروژه بدون بک‌اند واقعی.</td></tr>
-    <tr><td dir="rtl" align="right"><bdi dir="ltr">react-hot-toast</bdi></td><td dir="rtl" align="right">نمایش یکسان بازخورد موفقیت و خطای عملیات.</td></tr>
-    <tr><td dir="rtl" align="right"><bdi dir="ltr">Vitest</bdi></td><td dir="rtl" align="right">تست قراردادهای داده و منطق مستقل از رابط کاربری.</td></tr>
-    <tr><td dir="rtl" align="right"><bdi dir="ltr">ESLint + Prettier</bdi></td><td dir="rtl" align="right">کنترل قواعد معماری و یکسان‌سازی قالب کد.</td></tr>
-  </tbody>
-</table>
-
-
-<br clear="all" />
-
-## توسعه پروژه با Featureها و تیم‌های جدید
-
-<h3 dir="rtl" align="right">افزودن <bdi dir="ltr">Feature</bdi> بزرگ به <bdi dir="ltr">Admin</bdi></h3>
-
-<p dir="rtl" align="right">
-برای <bdi dir="ltr">Feature</bdi> مستقلی مانند <bdi dir="ltr">Billing</bdi> که تیم یا چرخه توسعه جدا دارد:
-</p>
-
-```text
-libs/admin/billing/
-├── feature/
-│   ├── project.json
-│   └── src/
-│       ├── screens/
-│       ├── components/
-│       ├── hooks/
-│       └── index.ts
-└── data-access/
-    ├── project.json
-    └── src/
-        ├── billing.api.ts
-        ├── billing.keys.ts
-        ├── billing.queries.ts
-        └── index.ts
-```
-
-Route مربوط به آن فقط Screen را در `apps/admin/app/(protected)` Compose می‌کند. Tagهای `scope:admin` و نوع مناسب نیز باید به Projectها افزوده شوند.
-
-### افزودن Feature کوچک به Profile
-
-تا زمانی که Featureها توسط یک تیم و در یک چرخه Release نگه‌داری می‌شوند:
-
-```text
-apps/profile/src/features/<feature-name>/
-```
-
-اگر تعداد تیم‌ها، اندازه کد یا نیاز به مرز مستقل افزایش یافت، Feature به `libs/profile/<feature-name>` منتقل و Tagهای Nx برای آن تعریف می‌شود. معیار استخراج، مالکیت و هزینه هماهنگی است، نه صرفاً تعداد فایل‌ها.
-
-### افزودن محصول جدید
-
-1. یک Next.js App جدید در `apps/<product>` ساخته می‌شود.
-2. Scope جدید مانند `scope:billing` تعریف می‌شود.
-3. قوانین مجاز وابستگی آن Scope به ESLint اضافه می‌شود.
-4. `AppProviders`، Auth و UI مشترک در Root Layout Compose می‌شوند.
-5. فقط قابلیت‌های واقعاً مشترک از `libs` مصرف می‌شوند و Featureهای اختصاصی در Scope محصول باقی می‌مانند.
 
 ## کنترل کیفیت
 
