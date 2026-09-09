@@ -1,1 +1,1 @@
-export * from "./lib/dashboard-screen";
+export * from "./lib/screens/dashboard-screen";

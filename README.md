@@ -4,22 +4,20 @@
 
 ## فهرست مطالب
 
-- [قابلیت‌های پیاده‌سازی‌شده](#features)
-- [اجرای پروژه](#getting-started)
-- [معماری انتخاب‌شده](#architecture)
-- [ساختار مخزن](#repository-structure)
-- [پروژه‌ها و Libraryهای Nx](#nx-projects)
-- [گراف وابستگی Nx](#dependency-graph)
-- [مرز مسئولیت لایه‌ها](#layers)
-- [تصمیم متفاوت برای Admin و Profile](#admin-profile-strategy)
-- [مدیریت API و Server State](#server-state)
-- [احراز هویت و Protected Routes](#authentication)
-- [مدیریت Loading و Error](#async-states)
-- [دلیل انتخاب تکنولوژی‌ها](#technology-decisions)
-- [توسعه پروژه با Featureها و تیم‌های جدید](#scaling)
-- [کنترل کیفیت](#quality)
-
-<a id="features"></a>
+- [قابلیت‌های پیاده‌سازی‌شده](#قابلیتهای-پیادهسازیشده)
+- [اجرای پروژه](#اجرای-پروژه)
+- [معماری انتخاب‌شده](#معماری-انتخابشده)
+- [ساختار مخزن](#ساختار-مخزن)
+- [پروژه‌ها و Libraryهای Nx](#پروژهها-و-libraryهای-nx)
+- [گراف وابستگی Nx](#گراف-وابستگی-nx)
+- [مرز مسئولیت لایه‌ها](#مرز-مسئولیت-لایهها)
+- [تصمیم متفاوت برای Admin و Profile](#تصمیم-متفاوت-برای-admin-و-profile)
+- [مدیریت API و Server State](#مدیریت-api-و-server-state)
+- [احراز هویت و Protected Routes](#احراز-هویت-و-protected-routes)
+- [مدیریت Loading و Error](#مدیریت-loading-و-error)
+- [دلیل انتخاب تکنولوژی‌ها](#دلیل-انتخاب-تکنولوژیها)
+- [توسعه پروژه با Featureها و تیم‌های جدید](#توسعه-پروژه-با-featureها-و-تیمهای-جدید)
+- [کنترل کیفیت](#کنترل-کیفیت)
 
 ## قابلیت‌های پیاده‌سازی‌شده
 
@@ -49,8 +47,6 @@
 - Theme، Layout، حالت‌های Loading/Error و زیرساخت RTL
 - API Mock با MSW و داده‌ها و پیام‌های فارسی
 - جلوگیری از ارسال تکراری عملیات در زمان Loading
-
-<a id="getting-started"></a>
 
 ## اجرای پروژه
 
@@ -89,9 +85,13 @@ npm run dev:profile
 | مدیر   | `admin@saas.io` | `admin123` |
 | کاربر  | `user@saas.io`  | `user123`  |
 
-برای ورود به Routeهای محافظت‌شده Admin باید از حساب مدیر استفاده شود.
+<p dir="rtl" align="right">
+برای ورود به <bdi dir="ltr">Route</bdi>های محافظت‌شده <bdi dir="ltr">Admin</bdi> باید از حساب مدیر استفاده شود.
+</p>
 
-Mock API در محیط Development به‌صورت خودکار فعال است. برای فعال‌کردن صریح آن در محیطی دیگر می‌توان مقدار زیر را تنظیم کرد:
+<p dir="rtl" align="right">
+<bdi dir="ltr">Mock API</bdi> در محیط <bdi dir="ltr">Development</bdi> به‌صورت خودکار فعال است. برای فعال‌کردن صریح آن در محیطی دیگر می‌توان مقدار زیر را تنظیم کرد:
+</p>
 
 ```bash
 NEXT_PUBLIC_ENABLE_MOCKS=true
@@ -99,81 +99,136 @@ NEXT_PUBLIC_ENABLE_MOCKS=true
 
 در Production و بدون این متغیر، برنامه درخواست‌ها را به Endpointهای واقعی `/api` ارسال می‌کند.
 
-<a id="architecture"></a>
-
 ## معماری انتخاب‌شده
 
 معماری پروژه یک **Modular Monorepo با Feature-based Architecture و مرزبندی لایه‌ای** است.
 
-- **Monorepo** امکان نگه‌داری چند محصول و کد مشترک آن‌ها را در یک مخزن فراهم می‌کند.
-- **Feature-based Architecture** کد را بر اساس قابلیت‌های کسب‌وکار مانند Authentication، User Management و Dashboard سازماندهی می‌کند.
-- **Layered boundaries** جهت وابستگی میان Domain، Data Access، Feature، UI و App را مشخص می‌کند.
-- هر Next.js App یک واحد مستقل برای اجرا، Build و استقرار است و نقش Composition Root محصول را دارد.
+<ul dir="rtl" align="right">
+  <li><strong><bdi dir="ltr">Monorepo</bdi></strong> امکان نگه‌داری چند محصول و کد مشترک آن‌ها را در یک مخزن فراهم می‌کند.</li>
+  <li><strong><bdi dir="ltr">Feature-based Architecture</bdi></strong> کد را بر اساس قابلیت‌های کسب‌وکار مانند <bdi dir="ltr">Authentication</bdi>، <bdi dir="ltr">User Management</bdi> و <bdi dir="ltr">Dashboard</bdi> سازماندهی می‌کند.</li>
+  <li><strong><bdi dir="ltr">Layered boundaries</bdi></strong> جهت وابستگی میان <bdi dir="ltr">Domain</bdi>، <bdi dir="ltr">Data Access</bdi>، <bdi dir="ltr">Feature</bdi>، <bdi dir="ltr">UI</bdi> و <bdi dir="ltr">App</bdi> را مشخص می‌کند.</li>
+  <li>هر <bdi dir="ltr">Next.js App</bdi> یک واحد مستقل برای اجرا، <bdi dir="ltr">Build</bdi> و استقرار است و نقش <bdi dir="ltr">Composition Root</bdi> محصول را دارد.</li>
+</ul>
 
-این ساختار برای سناریوی تسک مناسب است، چون تغییر مشترک در Auth، UI یا API می‌تواند به‌صورت Atomic برای هر دو محصول انجام شود؛ در عین حال کد اختصاصی هر محصول و مالکیت تیم‌ها از یکدیگر جدا می‌ماند.
+<p dir="rtl" align="right">
+این ساختار برای سناریوی تسک مناسب است، چون تیم‌های آینده می‌توانند جداگانه روی هر اپ کار کنند و کد مشترک را در <bdi dir="ltr">Library</bdi>های مشخص با قراردادهای عمومی نگه دارند. تغییر مشترک در <bdi dir="ltr">Auth</bdi>، <bdi dir="ltr">UI</bdi> یا <bdi dir="ltr">API</bdi> می‌تواند در یک تغییر هماهنگ برای هر دو محصول انجام شود؛ به این ترتیب انسجام محصولات حفظ می‌شود و مالکیت کد اختصاصی هر محصول هم روشن می‌ماند. <bdi dir="ltr">Feature</bdi>ها ماژولار هستند و در صورت سازگاری مسئولیت و محدودهٔ وابستگی، از طریق <bdi dir="ltr">Public API</bdi> قابل استفادهٔ مجددند؛ لازم نیست همهٔ آن‌ها بین همهٔ محصولات مشترک باشند. افزودن قابلیت جدید نیز با پیروی از ساختار قابلیت‌های موجود و تعیین محدوده و وابستگی‌های آن ساده‌تر می‌شود.
+</p>
 
-Micro Frontend در وضعیت فعلی انتخاب نشده است. دو Next.js App از نظر اجرا و استقرار مستقل هستند و نیاز فعلی به ترکیب چند Frontend در Runtime وجود ندارد. اضافه‌کردن Micro Frontend در این مرحله هزینه Versioning، ارتباط Runtime، استقرار و Debug را بالا می‌برد، بدون آنکه مسئله‌ای واقعی را حل کند. مرزهای فعلی اجازه می‌دهند در صورت ایجاد نیاز سازمانی واقعی، این تصمیم بعداً بازنگری شود.
+<p dir="rtl" align="right">
+<bdi dir="ltr">Micro Frontend</bdi> در وضعیت فعلی انتخاب نشده است. در فرض طراحی این تسک، مقیاس تیم هنوز آن‌قدر بزرگ نیست که انتشار و استقرار مستقل بخش‌های یک محصول توسط چند تیم ضروری باشد. همچنین نیازی به ساخت محصول یا بخشی از آن با یک استک دیگر مانند <bdi dir="ltr">Angular</bdi> و ترکیب آن با بخش‌های فعلی در <bdi dir="ltr">Runtime</bdi> مطرح نشده است. بنابراین <bdi dir="ltr">Monorepo</bdi> در کنار ساختار <bdi dir="ltr">Feature-based</bdi> نیاز فعلی را پوشش می‌دهد.
+</p>
 
-<a id="repository-structure"></a>
+<p dir="rtl" align="right">
+دو <bdi dir="ltr">Next.js App</bdi> همین حالا هم از نظر اجرا، <bdi dir="ltr">Build</bdi> و استقرار مستقل هستند؛ این استقلال به‌تنهایی نیازمند <bdi dir="ltr">Micro Frontend</bdi> نیست. حتی داشتن محصولی مستقل با استک متفاوت نیز به‌تنهایی چنین ضرورتی ایجاد نمی‌کند. اگر در آینده چند تیم به انتشار مستقل بخش‌های یک رابط مشترک و ترکیب آن‌ها در <bdi dir="ltr">Runtime</bdi> نیاز پیدا کنند، این انتخاب بازنگری می‌شود. در شرایط فعلی، هزینهٔ <bdi dir="ltr">Versioning</bdi>، ارتباط بین بخش‌ها، استقرار و <bdi dir="ltr">Debug</bdi> چنین معماری‌ای توجیه ندارد.
+</p>
+
+<p dir="rtl" align="right">
+برای مثال، اگر در آینده تیم‌های مسئول <bdi dir="ltr">Dashboard</bdi> و مدیریت کاربران نیاز داشته باشند بخش خود را جداگانه <bdi dir="ltr">Build</bdi> و <bdi dir="ltr">Deploy</bdi> کنند، بدون آنکه انتشار آن بخش نیازمند بازسازی و استقرار کل اپ <bdi dir="ltr">Admin</bdi> باشد، و این بخش‌ها همچنان در یک رابط مشترک نمایش داده شوند، <bdi dir="ltr">Micro Frontend</bdi> گزینهٔ قابل بررسی خواهد بود. <bdi dir="ltr">Library</bdi>های فعلی مرز کد و مالکیت تیمی ایجاد می‌کنند، اما واحد استقرار مستقل نیستند. در مقابل، اگر فقط بخواهیم اپ‌های <bdi dir="ltr">Admin</bdi> و <bdi dir="ltr">Profile</bdi> را جداگانه و در زمان‌های متفاوت مستقر کنیم، ساختار فعلی این امکان را دارد و نیازی به تغییر معماری نیست.
+</p>
+
+### انتخاب Nx
+
+<p dir="rtl" align="right">
+پس از انتخاب معماری <bdi dir="ltr">Monorepo + Modular Feature-based</bdi>، ابزار <bdi dir="ltr">Nx</bdi> برای مدیریت و کنترل این ساختار انتخاب شده است. صرفاً قرار دادن چند اپ در یک مخزن به <bdi dir="ltr">Nx</bdi> نیاز ندارد؛ <a href="https://pnpm.io/workspaces"><bdi dir="ltr">pnpm Workspaces</bdi></a> هم مدیریت پکیج‌های یک مخزن و اتصال وابستگی‌های محلی را فراهم می‌کند. <bdi dir="ltr">pnpm</bdi> مدیر پکیج است و می‌تواند کنار <bdi dir="ltr">Nx</bdi> یا <bdi dir="ltr">Turborepo</bdi> استفاده شود؛ پروژهٔ فعلی از <bdi dir="ltr">npm</bdi> استفاده می‌کند. مقایسهٔ زیر دربارهٔ ابزار مدیریت پروژه‌ها و اجرای کارهاست، نه تعویض مدیر پکیج پروژه.
+</p>
+
+<p dir="rtl" align="right">
+مزیت تعیین‌کنندهٔ <bdi dir="ltr">Nx</bdi> برای این تسک، تبدیل مرزهای معماری به قوانین قابل بررسی است. در <code dir="ltr">eslint.config.mjs</code>، قانون <code dir="ltr">@nx/enforce-module-boundaries</code> با تگ‌های نوع و محدوده فعال است؛ مثلاً <bdi dir="ltr">Profile</bdi> نمی‌تواند قابلیت اختصاصی <bdi dir="ltr">Admin</bdi> را وارد کند و <bdi dir="ltr">Domain</bdi> به لایه‌های نمایشی وابسته نمی‌شود. این تصمیم بر قابلیت واقعی استفاده‌شده در مخزن تکیه دارد. جزئیات این امکان در <a href="https://nx.dev/docs/guides/enforce-module-boundaries">مستندات مرزبندی Nx</a> آمده است.
+</p>
+
+<table dir="rtl" align="right">
+  <thead><tr><th>معیار</th><th><bdi dir="ltr">Nx</bdi></th><th><bdi dir="ltr">Turborepo + pnpm</bdi></th></tr></thead>
+  <tbody>
+    <tr><td>پیچیدگی راه‌اندازی</td><td>در ساختار فعلی بیشتر؛ تعریف پروژه‌ها، تگ‌ها و قواعد</td><td>برای شروع با پکیج‌ها و اسکریپت‌ها معمولاً کمتر</td></tr>
+    <tr><td>تولید کد</td><td>✅ تولیدکننده‌های قابل برنامه‌نویسی و توسعه از طریق پلاگین</td><td>✅ تولید کد و پکیج با <code dir="ltr">turbo gen</code> و قالب‌ها</td></tr>
+    <tr><td>اعمال مرز ماژول‌ها</td><td>قواعد مبتنی بر تگ در <bdi dir="ltr">ESLint</bdi>؛ استفاده‌شده در همین پروژه</td><td>دارای <code dir="ltr">turbo boundaries</code>؛ دامنه و بلوغ آن باید با قواعد موردنیاز پروژه سنجیده شود</td></tr>
+    <tr><td>اکوسیستم پلاگین</td><td>ابزارهای یکپارچه برای تولید کد، اجرای کارها و مهاجرت تنظیمات</td><td>تمرکز بر اجرای اسکریپت‌های پکیج‌ها؛ یکپارچه‌سازی ابزارهای دیگر بیشتر بر عهدهٔ مخزن</td></tr>
+    <tr><td>منحنی یادگیری</td><td>در این الگو بیشتر؛ گراف، تگ‌ها و تنظیمات پروژه</td><td>برای تیم آشنا با پکیج‌ها و اسکریپت‌ها معمولاً کمتر</td></tr>
+    <tr><td>مقیاس سازمانی</td><td>برای نیاز این تسک به کنترل معماری و رشد چندتیمی مناسب‌تر ارزیابی شده است</td><td>قابل استفاده در مقیاس بزرگ؛ قواعد معماری موردنیاز باید جداگانه ارزیابی و تکمیل شوند</td></tr>
+  </tbody>
+</table>
+
+<p dir="rtl" align="right">
+ارزیابی پیچیدگی و تناسب سازمانی در جدول، قضاوت طراحی این پروژه است، نه رتبه‌بندی مطلق ابزارها. هر دو ابزار امکانات اجرای کارها و کش دارند؛ دلیل ترجیح <bdi dir="ltr">Nx</bdi> فقط سرعت <bdi dir="ltr">Build</bdi> نیست. برای بررسی قابلیت‌ها: <a href="https://21.nx.dev/docs/features">امکانات Nx</a>، <a href="https://turborepo.dev/docs/guides/generating-code">تولید کد Turborepo</a> و <a href="https://turborepo.dev/docs/reference/boundaries">مرزبندی Turborepo</a>. بنابراین نبود تولید کد یا نبود مطلق مرزبندی در <bdi dir="ltr">Turborepo</bdi> مبنای این انتخاب نیست.
+</p>
+
+### انتخاب Next.js
+
+<p dir="rtl" align="right">
+<bdi dir="ltr">Next.js</bdi> روی <bdi dir="ltr">React</bdi> ساخته شده است و جایگزین آن نیست؛ مقایسهٔ تصمیم این پروژه، استفاده از این فریم‌ورک در برابر ترکیب <bdi dir="ltr">React</bdi> با ابزار ساختی مانند <bdi dir="ltr">Vite</bdi> و یک مسیریاب جداگانه است. انتخاب <bdi dir="ltr">Next.js</bdi> برای داشتن قرارداد یکسان مسیریابی فایل‌محور و <bdi dir="ltr">Layout</bdi>های تو‌در‌تو در هر دو محصول است. ساختار <code dir="ltr">page.tsx</code> و <code dir="ltr">layout.tsx</code> در <a href="https://nextjs.org/docs/14/app/building-your-application/routing/pages-and-layouts">مستندات نسخهٔ ۱۴ Next.js</a> توضیح داده شده است.
+</p>
+
+<p dir="rtl" align="right">
+در این مخزن، فایل‌های مسیر فقط صفحهٔ مناسب را متصل می‌کنند و <bdi dir="ltr">Layout</bdi> گروه محافظت‌شده محل اتصال محافظ احراز هویت و پوستهٔ محصول است. منطق قابلیت‌ها در <bdi dir="ltr">Feature</bdi>ها باقی می‌ماند؛ در نتیجه تیم‌ها برای اضافه‌کردن مسیر جدید از قرارداد مشخصی پیروی می‌کنند و هر اپ تنظیمات اجرا و <bdi dir="ltr">Build</bdi> خود را دارد. وجود <bdi dir="ltr">Next.js</bdi> به‌خودی‌خود احراز هویت یا مجوز دسترسی ایجاد نمی‌کند؛ این رفتار با کد مشترک <bdi dir="ltr">Auth</bdi> پیاده شده است.
+</p>
+
+<p dir="rtl" align="right">
+برای صفحات مدیریتی فعلی، <bdi dir="ltr">SEO</bdi> و دریافت داده در سرور دلیل اصلی انتخاب نیستند؛ داده‌های صفحات فعلی با <bdi dir="ltr">React Query</bdi> در سمت کلاینت دریافت می‌شوند. ترکیب <bdi dir="ltr">React + Vite</bdi> هم گزینهٔ معتبری بود و برای یک اپ صرفاً کلاینتی می‌توانست ساده‌تر باشد. در این تسک، یکپارچگی قراردادهای مسیریابی و ساختار دو محصول به هزینهٔ یادگیری و تنظیمات بیشتر فریم‌ورک ترجیح داده شده است.
+</p>
 
 ## ساختار مخزن
 
-```text
-.
+<pre dir="ltr"><code>.
 ├── apps/
 │   ├── admin/
-│   │   ├── app/                         # Next.js routes, layouts, loading و error boundaries
+│   │   ├── app/                    # <bdi dir="rtl"><bdi dir="ltr">Next.js routes, layouts, loading</bdi> و <bdi dir="ltr">error boundaries</bdi></bdi>
 │   │   │   ├── login/
 │   │   │   └── (protected)/
 │   │   │       ├── dashboard/
 │   │   │       └── users/
 │   │   │           ├── new/
 │   │   │           └── [id]/edit/
-│   │   └── src/app-shell/               # Navigation و تنظیمات Shell اپ Admin
+│   │   └── src/app-shell/          # <bdi dir="rtl"><bdi dir="ltr">Navigation</bdi> و تنظیمات <bdi dir="ltr">Shell</bdi> اپ <bdi dir="ltr">Admin</bdi></bdi>
 │   │
 │   └── profile/
-│       ├── app/                         # Next.js routes و layouts
+│       ├── app/                    # <bdi dir="rtl"><bdi dir="ltr">Next.js routes</bdi> و <bdi dir="ltr">layouts</bdi></bdi>
 │       │   ├── login/
 │       │   └── (protected)/profile/
 │       └── src/
-│           ├── app-shell/               # تنظیمات Shell اپ Profile
-│           └── features/profile/        # Feature داخلی و اختصاصی Profile
+│           ├── app-shell/          # <bdi dir="rtl">تنظیمات <bdi dir="ltr">Shell</bdi> اپ <bdi dir="ltr">Profile</bdi></bdi>
+│           └── features/profile/   # <bdi dir="rtl"><bdi dir="ltr">Feature</bdi> داخلی و اختصاصی <bdi dir="ltr">Profile</bdi></bdi>
 │
 ├── libs/
 │   ├── admin/
 │   │   ├── dashboard/
-│   │   │   ├── feature/                 # Dashboard screen
-│   │   │   └── data-access/             # Query، query key و API
-│   │   └── users/feature/               # Feature کامل User Management در Admin
+│   │   │   ├── feature/            # <bdi dir="ltr"><bdi dir="ltr">Dashboard screen</bdi></bdi>
+│   │   │   │   └── src/
+│   │   │   │       ├── index.ts
+│   │   │   │       └── lib/
+│   │   │   │           └── screens/
+│   │   │   │               └── dashboard-screen.tsx
+│   │   │   └── data-access/        # <bdi dir="rtl"><bdi dir="ltr">Query</bdi>، <bdi dir="ltr">query key</bdi> و <bdi dir="ltr">API</bdi></bdi>
+│   │   └── users/feature/          # <bdi dir="rtl"><bdi dir="ltr">Feature</bdi> کامل <bdi dir="ltr">User Management</bdi> در <bdi dir="ltr">Admin</bdi></bdi>
 │   │       └── src/
-│   │           ├── screens/              # ورودی‌های سطح Route
-│   │           ├── components/           # اجزای نمایشی Feature
-│   │           ├── hooks/                # منطق و Controllerهای صفحه
-│   │           └── validation/           # Schemaهای Yup
+│   │           ├── index.ts
+│   │           └── lib/
+│   │               ├── screens/    # <bdi dir="rtl">ورودی‌های سطح <bdi dir="ltr">Route</bdi></bdi>
+│   │               ├── components/ # <bdi dir="rtl">اجزای نمایشی <bdi dir="ltr">Feature</bdi></bdi>
+│   │               ├── hooks/      # <bdi dir="rtl">منطق و <bdi dir="ltr">Controller</bdi>های صفحه</bdi>
+│   │               └── validation/ # <bdi dir="rtl"><bdi dir="ltr">Schema</bdi>های <bdi dir="ltr">Yup</bdi></bdi>
 │   │
 │   ├── users/
-│   │   ├── domain/                      # مدل‌ها و قراردادهای مستقل از Framework
-│   │   └── data-access/                 # React Query hooks و Users API
+│   │   ├── domain/                 # <bdi dir="rtl">مدل‌ها و قراردادهای مستقل از <bdi dir="ltr">Framework</bdi></bdi>
+│   │   └── data-access/            # <bdi dir="rtl"><bdi dir="ltr">React Query hooks</bdi> و <bdi dir="ltr">Users API</bdi></bdi>
 │   │
-│   ├── auth/                            # Login، Session، Logout و ProtectedRoute
-│   ├── ui/                              # UI و Layout مشترک و مستقل از محصول
+│   ├── auth/                       # <bdi dir="rtl"><bdi dir="ltr">Login</bdi>، <bdi dir="ltr">Session</bdi>، <bdi dir="ltr">Logout</bdi> و <bdi dir="ltr">ProtectedRoute</bdi></bdi>
+│   ├── ui/                         # <bdi dir="rtl"><bdi dir="ltr">UI</bdi> و <bdi dir="ltr">Layout</bdi> مشترک و مستقل از محصول</bdi>
 │   └── shared/
-│       ├── app-runtime/                 # Providerهای سراسری و QueryClient
-│       ├── http-client/                 # تنها محل استفاده مستقیم از fetch
-│       └── mock-api/                    # Handlerها و داده‌های MSW
+│       ├── app-runtime/            # <bdi dir="rtl"><bdi dir="ltr">Provider</bdi>های سراسری و <bdi dir="ltr">QueryClient</bdi></bdi>
+│       ├── http-client/            # <bdi dir="rtl">تنها محل استفاده مستقیم از <bdi dir="ltr">fetch</bdi></bdi>
+│       └── mock-api/               # <bdi dir="rtl"><bdi dir="ltr">Handler</bdi>ها و داده‌های <bdi dir="ltr">MSW</bdi></bdi>
 │
-├── tools/                               # تنظیمات مشترک alias و Next.js
-├── eslint.config.mjs                    # قوانین کیفیت و Nx boundaries
+├── tools/                          # <bdi dir="rtl">تنظیمات مشترک <bdi dir="ltr">alias</bdi> و <bdi dir="ltr">Next.js</bdi></bdi>
+├── eslint.config.mjs               # <bdi dir="rtl">قوانین کیفیت و <bdi dir="ltr">Nx boundaries</bdi></bdi>
 ├── nx.json
-├── tsconfig.base.json                   # Public import aliases
-└── vitest.config.mjs
-```
-
-<a id="nx-projects"></a>
+├── tsconfig.base.json              # <bdi dir="ltr"><bdi dir="ltr">Public import aliases</bdi></bdi>
+└── vitest.config.mjs</code></pre>
 
 ## پروژه‌ها و Libraryهای Nx
 
-Workspace در حال حاضر **۱۲ پروژه Nx** دارد: **۲ Application** و **۱۰ Library**.
+<p dir="rtl" align="right">
+<bdi dir="ltr">Workspace</bdi> در حال حاضر <strong>۱۲ پروژه <bdi dir="ltr">Nx</bdi></strong> دارد: <strong>۲ <bdi dir="ltr">Application</bdi></strong> و <strong>۱۰ <bdi dir="ltr">Library</bdi></strong>.
+</p>
 
 | محدوده      |  تعداد | پروژه‌ها                                                                        |
 | ----------- | -----: | ------------------------------------------------------------------------------- |
@@ -184,8 +239,6 @@ Workspace در حال حاضر **۱۲ پروژه Nx** دارد: **۲ Application
 | **مجموع**   | **۱۲** | **۲ App + ۱۰ Library**                                                          |
 
 Libraryها فقط برای اشتراک کد ساخته نشده‌اند. در Admin، بعضی Libraryها مرز مالکیت، نوع وابستگی و واحد مستقل Cache/Affected در Nx نیز هستند. در مقابل، کوچک‌ترین فایل یا Feature به Library تبدیل نشده تا گراف پروژه بی‌دلیل بزرگ و نگه‌داری آن پرهزینه نشود.
-
-<a id="dependency-graph"></a>
 
 ## گراف وابستگی Nx
 
@@ -260,8 +313,6 @@ npx nx graph
 
 وابستگی `admin-users-feature` به `admin-dashboard-data-access` برای باطل‌کردن Cache خلاصه Dashboard پس از حذف کاربر است. اگر تعداد Featureهای Admin زیاد شود، این هماهنگی می‌تواند به یک لایه Invalidation/Event مشترک منتقل شود تا Featureها به یکدیگر وابستگی مستقیم نداشته باشند.
 
-<a id="layers"></a>
-
 ## مرز مسئولیت لایه‌ها
 
 ### Apps؛ Composition Root و Routing
@@ -310,8 +361,6 @@ import { useUser } from "@saas/users/data-access";
 
 فایل‌های داخلی Feature مستقیماً Deep Import نمی‌شوند. Public API سطح قابل پشتیبانی Library را مشخص می‌کند، Refactor داخلی را کم‌هزینه‌تر می‌سازد و از وابستگی به جزئیات پیاده‌سازی جلوگیری می‌کند.
 
-<a id="admin-profile-strategy"></a>
-
 ## تصمیم متفاوت برای Admin و Profile
 
 اندازه، نرخ رشد و مدل مالکیت دو محصول یکسان فرض نشده است؛ به همین دلیل Granularity پروژه‌های Nx در آن‌ها عمداً متفاوت است.
@@ -328,7 +377,9 @@ apps/profile/src/features/profile/profile-screen.tsx
 
 ### Admin
 
-Admin بزرگ‌تر فرض شده و احتمال دارد یک یا چند تیم به‌صورت هم‌زمان روی User Management، Dashboard و Featureهای آینده کار کنند. Featureهای Admin به Libraryهای Nx تبدیل شده‌اند تا:
+<p dir="rtl" align="right">
+محصول <bdi dir="ltr">Admin</bdi> بزرگ‌تر و دارای قابلیت‌های بیشتری فرض شده و احتمال دارد در آینده چند تیم به‌صورت هم‌زمان روی <bdi dir="ltr">User Management</bdi>، <bdi dir="ltr">Dashboard</bdi> و قابلیت‌های جدید کار کنند. این فرض دربارهٔ رشد کل محصول است؛ صفحهٔ فعلی <bdi dir="ltr">Dashboard</bdi> به‌خودی‌خود بزرگ یا پیچیده نیست. به همین دلیل قابلیت‌های <bdi dir="ltr">Admin</bdi> در <bdi dir="ltr">libs/admin</bdi> مرز مستقل دارند، در حالی که قابلیت کوچک <bdi dir="ltr">Profile</bdi> داخل اپ خودش باقی مانده است. تبدیل قابلیت‌های <bdi dir="ltr">Admin</bdi> به <bdi dir="ltr">Library</bdi>های <bdi dir="ltr">Nx</bdi> کمک می‌کند تا:
+</p>
 
 - مرز مالکیت هر Feature روشن باشد؛
 - وابستگی‌های غیرمجاز با Tag و ESLint متوقف شوند؛
@@ -338,7 +389,15 @@ Admin بزرگ‌تر فرض شده و احتمال دارد یک یا چند ت
 
 این تفاوت یک استثنای تصادفی نیست؛ سطح جداسازی بر اساس هزینه واقعی هماهنگی تیم‌ها انتخاب شده است. اگر Profile در آینده چند Feature مستقل یا چند تیم مالک پیدا کند، می‌توان ساختار آن را بدون تغییر Routeهای بیرونی به شکل `libs/profile/<feature>` توسعه داد.
 
-<a id="server-state"></a>
+### دلیل قرارگیری Users در libs
+
+<p dir="rtl" align="right">
+قرارگیری <bdi dir="ltr">users</bdi> در <code dir="ltr">libs/users</code> به استفادهٔ مشترک از مدل‌ها و دسترسی به دادهٔ کاربران مربوط است. رابط مدیریت کاربران مخصوص <bdi dir="ltr">Admin</bdi> در <code dir="ltr">libs/admin/users/feature</code> قرار دارد، اما قراردادهای دامنه در <code dir="ltr">libs/users/domain</code> و منطق دسترسی به داده در <code dir="ltr">libs/users/data-access</code> نگه‌داری می‌شوند. هم صفحات مدیریت کاربران و هم صفحهٔ <bdi dir="ltr">Profile</bdi> از این لایهٔ داده استفاده می‌کنند؛ برای نمونه هر دو برای دریافت جزئیات کاربر از <code dir="ltr">useUser</code> استفاده می‌کنند.
+</p>
+
+<p dir="rtl" align="right">
+این جداسازی برای سناریوی چندمحصولی تسک مناسب است: قراردادهای کاربر، درخواست‌های <bdi dir="ltr">API</bdi> و کلیدهای <bdi dir="ltr">Query</bdi> تکرار نمی‌شوند و <bdi dir="ltr">Profile</bdi> برای دسترسی به دادهٔ کاربر به قابلیت اختصاصی <bdi dir="ltr">Admin</bdi> وابسته نمی‌شود. در مقابل، داده‌های خلاصهٔ <bdi dir="ltr">Dashboard</bdi> مخصوص <bdi dir="ltr">Admin</bdi> هستند؛ بنابراین <code dir="ltr">libs/admin/dashboard/data-access</code> کنار قابلیت آن قرار گرفته است. معیار محل قرارگیری کد، مصرف‌کننده‌ها و مسئولیت آن است؛ یکسان‌بودن ظاهری همهٔ پوشه‌ها هدف نیست.
+</p>
 
 ## مدیریت API و Server State
 
@@ -367,8 +426,6 @@ ESLint استفاده مستقیم از `fetch` را در `apps` و سایر `li
 
 برای Queryهای خواندنی، `AbortSignal` به HTTP Client منتقل می‌شود؛ بنابراین React Query می‌تواند Request بلااستفاده را لغو کند. پس از Mutation نیز Queryهای مرتبط Invalid می‌شوند تا UI با داده سرور همگام بماند.
 
-<a id="authentication"></a>
-
 ## احراز هویت و Protected Routes
 
 Authentication در Library مشترک `auth` قرار دارد، چون هر دو محصول به Login، Logout، بازیابی Session و محافظت Route نیاز دارند.
@@ -384,8 +441,6 @@ Authentication در Library مشترک `auth` قرار دارد، چون هر د
 
 Mock فعلی Token را در Storage مرورگر نگه می‌دارد. در Backend واقعی، استفاده از Cookie امن `HttpOnly` می‌تواند خطر دسترسی JavaScript به Token را کاهش دهد و باید همراه سیاست CSRF مناسب طراحی شود.
 
-<a id="async-states"></a>
-
 ## مدیریت Loading و Error
 
 Loading و Error بخشی از قرارداد هر عملیات Async در نظر گرفته شده‌اند:
@@ -399,8 +454,6 @@ Loading و Error بخشی از قرارداد هر عملیات Async در نظ�
 - شکست راه‌اندازی Mock API به‌جای صفحه خالی با پیام مشخص نمایش داده می‌شود.
 
 سیاست عمومی React Query در `shared-app-runtime` متمرکز است: خطاهای `4xx` دوباره امتحان نمی‌شوند، خطاهای موقت Query حداکثر یک بار Retry می‌شوند و Mutationها Retry خودکار ندارند تا عملیات تغییردهنده ناخواسته تکرار نشوند.
-
-<a id="technology-decisions"></a>
 
 ## دلیل انتخاب تکنولوژی‌ها
 
@@ -431,8 +484,6 @@ Projectها با دو گروه Tag کنترل می‌شوند:
 - Tagهای محدوده: `scope:admin`, `scope:profile`, `scope:users`, `scope:shared`
 
 برای مثال Admin اجازه وابستگی به محدوده‌های `admin`، `users` و `shared` را دارد؛ Profile نمی‌تواند Feature اختصاصی Admin را Import کند. همچنین Domain فقط می‌تواند به Domain وابسته شود. این قوانین با `@nx/enforce-module-boundaries` در ESLint بررسی می‌شوند و صرفاً یک توافق شفاهی میان تیم‌ها نیستند.
-
-<a id="scaling"></a>
 
 ## توسعه پروژه با Featureها و تیم‌های جدید
 
@@ -477,8 +528,6 @@ apps/profile/src/features/<feature-name>/
 3. قوانین مجاز وابستگی آن Scope به ESLint اضافه می‌شود.
 4. `AppProviders`، Auth و UI مشترک در Root Layout Compose می‌شوند.
 5. فقط قابلیت‌های واقعاً مشترک از `libs` مصرف می‌شوند و Featureهای اختصاصی در Scope محصول باقی می‌مانند.
-
-<a id="quality"></a>
 
 ## کنترل کیفیت
 
