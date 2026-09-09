@@ -6,10 +6,10 @@
 
 - [قابلیت‌های پیاده‌سازی‌شده](#قابلیتهای-پیادهسازیشده)
 - [اجرای پروژه](#اجرای-پروژه)
+- [ساختار مخزن](#ساختار-مخزن)
 - [معماری انتخاب‌شده](#معماری-انتخابشده)
   - [دلیل انتخاب تکنولوژی‌ها](#دلیل-انتخاب-تکنولوژیها)
   - [توسعه پروژه با Featureها و تیم‌های جدید](#توسعه-پروژه-با-featureها-و-تیمهای-جدید)
-- [ساختار مخزن](#ساختار-مخزن)
 - [پروژه‌ها و Libraryهای Nx](#پروژهها-و-libraryهای-nx)
 - [گراف وابستگی Nx](#گراف-وابستگی-nx)
 - [مرز مسئولیت لایه‌ها](#مرز-مسئولیت-لایهها)
@@ -98,6 +98,64 @@ NEXT_PUBLIC_ENABLE_MOCKS=true
 ```
 
 در Production و بدون این متغیر، برنامه درخواست‌ها را به Endpointهای واقعی `/api` ارسال می‌کند.
+
+## ساختار مخزن
+
+<pre dir="ltr"><code>.
+├── apps/
+│   ├── admin/
+│   │   ├── app/                    # <bdi dir="rtl"><bdi dir="ltr">Next.js routes, layouts, loading</bdi> و <bdi dir="ltr">error boundaries</bdi></bdi>
+│   │   │   ├── login/
+│   │   │   └── (protected)/
+│   │   │       ├── dashboard/
+│   │   │       └── users/
+│   │   │           ├── new/
+│   │   │           └── [id]/edit/
+│   │   └── src/app-shell/          # <bdi dir="rtl"><bdi dir="ltr">Navigation</bdi> و تنظیمات <bdi dir="ltr">Shell</bdi> اپ <bdi dir="ltr">Admin</bdi></bdi>
+│   │
+│   └── profile/
+│       ├── app/                    # <bdi dir="rtl"><bdi dir="ltr">Next.js routes</bdi> و <bdi dir="ltr">layouts</bdi></bdi>
+│       │   ├── login/
+│       │   └── (protected)/profile/
+│       └── src/
+│           ├── app-shell/          # <bdi dir="rtl">تنظیمات <bdi dir="ltr">Shell</bdi> اپ <bdi dir="ltr">Profile</bdi></bdi>
+│           └── features/profile/   # <bdi dir="rtl"><bdi dir="ltr">Feature</bdi> داخلی و اختصاصی <bdi dir="ltr">Profile</bdi></bdi>
+│
+├── libs/
+│   ├── admin/
+│   │   ├── dashboard/
+│   │   │   ├── feature/            # <bdi dir="ltr"><bdi dir="ltr">Dashboard screen</bdi></bdi>
+│   │   │   │   └── src/
+│   │   │   │       ├── index.ts
+│   │   │   │       └── lib/
+│   │   │   │           └── screens/
+│   │   │   │               └── dashboard-screen.tsx
+│   │   │   └── data-access/        # <bdi dir="rtl"><bdi dir="ltr">Query</bdi>، <bdi dir="ltr">query key</bdi> و <bdi dir="ltr">API</bdi></bdi>
+│   │   └── users/feature/          # <bdi dir="rtl"><bdi dir="ltr">Feature</bdi> کامل <bdi dir="ltr">User Management</bdi> در <bdi dir="ltr">Admin</bdi></bdi>
+│   │       └── src/
+│   │           ├── index.ts
+│   │           └── lib/
+│   │               ├── screens/    # <bdi dir="rtl">ورودی‌های سطح <bdi dir="ltr">Route</bdi></bdi>
+│   │               ├── components/ # <bdi dir="rtl">اجزای نمایشی <bdi dir="ltr">Feature</bdi></bdi>
+│   │               ├── hooks/      # <bdi dir="rtl">منطق و <bdi dir="ltr">Controller</bdi>های صفحه</bdi>
+│   │               └── validation/ # <bdi dir="rtl"><bdi dir="ltr">Schema</bdi>های <bdi dir="ltr">Yup</bdi></bdi>
+│   │
+│   ├── users/
+│   │   ├── domain/                 # <bdi dir="rtl">مدل‌ها و قراردادهای مستقل از <bdi dir="ltr">Framework</bdi></bdi>
+│   │   └── data-access/            # <bdi dir="rtl"><bdi dir="ltr">React Query hooks</bdi> و <bdi dir="ltr">Users API</bdi></bdi>
+│   │
+│   ├── auth/                       # <bdi dir="rtl"><bdi dir="ltr">Login</bdi>، <bdi dir="ltr">Session</bdi>، <bdi dir="ltr">Logout</bdi> و <bdi dir="ltr">ProtectedRoute</bdi></bdi>
+│   ├── ui/                         # <bdi dir="rtl"><bdi dir="ltr">UI</bdi> و <bdi dir="ltr">Layout</bdi> مشترک و مستقل از محصول</bdi>
+│   └── shared/
+│       ├── app-runtime/            # <bdi dir="rtl"><bdi dir="ltr">Provider</bdi>های سراسری و <bdi dir="ltr">QueryClient</bdi></bdi>
+│       ├── http-client/            # <bdi dir="rtl">تنها محل استفاده مستقیم از <bdi dir="ltr">fetch</bdi></bdi>
+│       └── mock-api/               # <bdi dir="rtl"><bdi dir="ltr">Handler</bdi>ها و داده‌های <bdi dir="ltr">MSW</bdi></bdi>
+│
+├── tools/                          # <bdi dir="rtl">تنظیمات مشترک <bdi dir="ltr">alias</bdi> و <bdi dir="ltr">Next.js</bdi></bdi>
+├── eslint.config.mjs               # <bdi dir="rtl">قوانین کیفیت و <bdi dir="ltr">Nx boundaries</bdi></bdi>
+├── nx.json
+├── tsconfig.base.json              # <bdi dir="ltr"><bdi dir="ltr">Public import aliases</bdi></bdi>
+└── vitest.config.mjs</code></pre>
 
 ## معماری انتخاب‌شده
 
@@ -245,64 +303,6 @@ apps/profile/src/features/<feature-name>/
 3. قوانین مجاز وابستگی آن Scope به ESLint اضافه می‌شود.
 4. `AppProviders`، Auth و UI مشترک در Root Layout Compose می‌شوند.
 5. فقط قابلیت‌های واقعاً مشترک از `libs` مصرف می‌شوند و Featureهای اختصاصی در Scope محصول باقی می‌مانند.
-
-## ساختار مخزن
-
-<pre dir="ltr"><code>.
-├── apps/
-│   ├── admin/
-│   │   ├── app/                    # <bdi dir="rtl"><bdi dir="ltr">Next.js routes, layouts, loading</bdi> و <bdi dir="ltr">error boundaries</bdi></bdi>
-│   │   │   ├── login/
-│   │   │   └── (protected)/
-│   │   │       ├── dashboard/
-│   │   │       └── users/
-│   │   │           ├── new/
-│   │   │           └── [id]/edit/
-│   │   └── src/app-shell/          # <bdi dir="rtl"><bdi dir="ltr">Navigation</bdi> و تنظیمات <bdi dir="ltr">Shell</bdi> اپ <bdi dir="ltr">Admin</bdi></bdi>
-│   │
-│   └── profile/
-│       ├── app/                    # <bdi dir="rtl"><bdi dir="ltr">Next.js routes</bdi> و <bdi dir="ltr">layouts</bdi></bdi>
-│       │   ├── login/
-│       │   └── (protected)/profile/
-│       └── src/
-│           ├── app-shell/          # <bdi dir="rtl">تنظیمات <bdi dir="ltr">Shell</bdi> اپ <bdi dir="ltr">Profile</bdi></bdi>
-│           └── features/profile/   # <bdi dir="rtl"><bdi dir="ltr">Feature</bdi> داخلی و اختصاصی <bdi dir="ltr">Profile</bdi></bdi>
-│
-├── libs/
-│   ├── admin/
-│   │   ├── dashboard/
-│   │   │   ├── feature/            # <bdi dir="ltr"><bdi dir="ltr">Dashboard screen</bdi></bdi>
-│   │   │   │   └── src/
-│   │   │   │       ├── index.ts
-│   │   │   │       └── lib/
-│   │   │   │           └── screens/
-│   │   │   │               └── dashboard-screen.tsx
-│   │   │   └── data-access/        # <bdi dir="rtl"><bdi dir="ltr">Query</bdi>، <bdi dir="ltr">query key</bdi> و <bdi dir="ltr">API</bdi></bdi>
-│   │   └── users/feature/          # <bdi dir="rtl"><bdi dir="ltr">Feature</bdi> کامل <bdi dir="ltr">User Management</bdi> در <bdi dir="ltr">Admin</bdi></bdi>
-│   │       └── src/
-│   │           ├── index.ts
-│   │           └── lib/
-│   │               ├── screens/    # <bdi dir="rtl">ورودی‌های سطح <bdi dir="ltr">Route</bdi></bdi>
-│   │               ├── components/ # <bdi dir="rtl">اجزای نمایشی <bdi dir="ltr">Feature</bdi></bdi>
-│   │               ├── hooks/      # <bdi dir="rtl">منطق و <bdi dir="ltr">Controller</bdi>های صفحه</bdi>
-│   │               └── validation/ # <bdi dir="rtl"><bdi dir="ltr">Schema</bdi>های <bdi dir="ltr">Yup</bdi></bdi>
-│   │
-│   ├── users/
-│   │   ├── domain/                 # <bdi dir="rtl">مدل‌ها و قراردادهای مستقل از <bdi dir="ltr">Framework</bdi></bdi>
-│   │   └── data-access/            # <bdi dir="rtl"><bdi dir="ltr">React Query hooks</bdi> و <bdi dir="ltr">Users API</bdi></bdi>
-│   │
-│   ├── auth/                       # <bdi dir="rtl"><bdi dir="ltr">Login</bdi>، <bdi dir="ltr">Session</bdi>، <bdi dir="ltr">Logout</bdi> و <bdi dir="ltr">ProtectedRoute</bdi></bdi>
-│   ├── ui/                         # <bdi dir="rtl"><bdi dir="ltr">UI</bdi> و <bdi dir="ltr">Layout</bdi> مشترک و مستقل از محصول</bdi>
-│   └── shared/
-│       ├── app-runtime/            # <bdi dir="rtl"><bdi dir="ltr">Provider</bdi>های سراسری و <bdi dir="ltr">QueryClient</bdi></bdi>
-│       ├── http-client/            # <bdi dir="rtl">تنها محل استفاده مستقیم از <bdi dir="ltr">fetch</bdi></bdi>
-│       └── mock-api/               # <bdi dir="rtl"><bdi dir="ltr">Handler</bdi>ها و داده‌های <bdi dir="ltr">MSW</bdi></bdi>
-│
-├── tools/                          # <bdi dir="rtl">تنظیمات مشترک <bdi dir="ltr">alias</bdi> و <bdi dir="ltr">Next.js</bdi></bdi>
-├── eslint.config.mjs               # <bdi dir="rtl">قوانین کیفیت و <bdi dir="ltr">Nx boundaries</bdi></bdi>
-├── nx.json
-├── tsconfig.base.json              # <bdi dir="ltr"><bdi dir="ltr">Public import aliases</bdi></bdi>
-└── vitest.config.mjs</code></pre>
 
 ## پروژه‌ها و Libraryهای Nx
 
