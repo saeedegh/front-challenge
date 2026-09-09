@@ -1,4 +1,4 @@
-import { CreateUserScreen } from "@saas/admin/users/feature-form";
+import { CreateUserScreen } from "@saas/admin/users/feature";
 
 export default function CreateUserPage() {
   return <CreateUserScreen />;

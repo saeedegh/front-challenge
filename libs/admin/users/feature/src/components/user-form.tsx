@@ -12,7 +12,7 @@ import {
   TextField,
 } from "@mui/material";
 import type { UserInput } from "@saas/users/domain";
-import { userFormSchema } from "./user-form.schema";
+import { userFormSchema } from "../validation/user-form.schema";
 
 const emptyValues: UserInput = { name: "", email: "", department: "", role: "user" };
 

@@ -20,7 +20,7 @@ The `apps` directories are composition roots: they own Next.js routing, metadata
 
 - `libs/users/domain`: framework-free user models.
 - `libs/users/data-access`: user API calls, query keys, and React Query hooks.
-- `libs/admin/users/*`: admin user list, detail, and form features.
+- `libs/admin/users/feature`: the complete admin user-management feature.
 - `libs/admin/dashboard/*`: dashboard data access and UI.
 - `apps/profile/src/features`: features owned and used only by the profile app.
 - `libs/ui`: presentational, product-agnostic UI and layout components.

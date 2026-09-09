@@ -1,6 +1,0 @@
-{
-  "name": "admin-users-feature-list",
-  "sourceRoot": "libs/admin/users/feature-list/src",
-  "projectType": "library",
-  "tags": ["scope:admin", "type:feature"]
-}

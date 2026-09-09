@@ -5,7 +5,7 @@ import { Card, CardContent, Typography } from "@mui/material";
 import toast from "react-hot-toast";
 import { useCreateUser } from "@saas/users/data-access";
 import type { UserInput } from "@saas/users/domain";
-import { UserForm } from "./user-form";
+import { UserForm } from "../components/user-form";
 import { useQueryClient } from "@tanstack/react-query";
 import { dashboardKeys } from "@saas/admin/dashboard/data-access";
 

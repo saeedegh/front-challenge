@@ -5,7 +5,7 @@ import { Alert, Card, CardContent, CircularProgress, Typography } from "@mui/mat
 import toast from "react-hot-toast";
 import { useUpdateUser, useUser } from "@saas/users/data-access";
 import type { UserInput } from "@saas/users/domain";
-import { UserForm } from "./user-form";
+import { UserForm } from "../components/user-form";
 
 export function EditUserScreen({ userId }: { userId: string }) {
   const router = useRouter();
